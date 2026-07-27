@@ -8,3 +8,6 @@ vite.config.*.timestamp-*
 .env.*
 !.env.example
 *.log
+
+# private working files — final resume PDF is copied to public/
+Resume/

@@ -11,7 +11,7 @@ export default function Nav() {
           <a href="/#stack">Stack</a>
           <a href="/#contact">Contact</a>
         </nav>
-        <a href="/#contact" className="nav-cta mono">résumé ↗</a>
+        <a href="/Yue_Hu_Resume.pdf" target="_blank" rel="noreferrer" className="nav-cta mono">résumé ↗</a>
       </div>
     </header>
   )

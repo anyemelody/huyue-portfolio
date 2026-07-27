@@ -56,11 +56,20 @@ export default function ProjectPage() {
               <pre className="arch" dangerouslySetInnerHTML={{ __html: d.arch }} />
             )}
             {p.story && p.story.split(/\n{2,}/).map((block, i) => {
-              if (block.startsWith('### ')) {
-                return <h4 className="proj-h" key={i} style={{ fontSize: '0.92em', opacity: 0.88 }}>{block.slice(4)}</h4>
-              }
-              if (block.startsWith('## ')) {
-                return <h3 className="proj-h" key={i}>{block.slice(3)}</h3>
+              if (block.startsWith('### ') || block.startsWith('## ')) {
+                // first line = heading, remaining lines = body paragraph
+                const isSub = block.startsWith('### ')
+                const nl = block.indexOf('\n')
+                const head = (nl === -1 ? block : block.slice(0, nl)).slice(isSub ? 4 : 3)
+                const rest = nl === -1 ? '' : block.slice(nl + 1).trim()
+                return (
+                  <div key={i}>
+                    {isSub
+                      ? <h4 className="proj-h" style={{ fontSize: '0.92em', opacity: 0.88 }}>{head}</h4>
+                      : <h3 className="proj-h">{head}</h3>}
+                    {rest && <p className="proj-body">{rest}</p>}
+                  </div>
+                )
               }
               if (block.trim().startsWith('[img:')) {
                 const srcs = [...block.matchAll(/\[img:([^\]]+)\]/g)].map((m) => m[1])
