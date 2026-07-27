@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 880" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9" fill="none" stroke="#5c6478" stroke-width="1.6" stroke-linecap="round"/>
+    </marker>
+  </defs>
+
+  <!-- panel -->
+  <rect x="2" y="2" width="1496" height="876" rx="26" fill="#0b0d12" stroke="#1c2130" stroke-width="2"/>
+
+  <!-- title -->
+  <text x="750" y="64" fill="#8b93a7" font-size="21" letter-spacing="6" text-anchor="middle">AIGE · CREATE WITH AI — AGENTIC GENERATION PIPELINE</text>
+  <text x="750" y="94" fill="#4c5468" font-size="14" letter-spacing="2" text-anchor="middle">the LLM judges · deterministic code executes</text>
+
+  <!-- prompt pill -->
+  <rect x="52" y="185" width="150" height="90" rx="18" fill="#151a26" stroke="#3a4258" stroke-width="1.5"/>
+  <text x="127" y="224" fill="#c8cede" font-size="16" text-anchor="middle">user</text>
+  <text x="127" y="246" fill="#c8cede" font-size="16" text-anchor="middle">prompt</text>
+  <line x1="202" y1="230" x2="248" y2="230" stroke="#5c6478" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <!-- Stage 1 -->
+  <rect x="256" y="130" width="340" height="210" rx="16" fill="#10182a" stroke="#7aa2f7" stroke-width="1.6"/>
+  <text x="280" y="168" fill="#7aa2f7" font-size="19" font-weight="bold">① CLASSIFY</text>
+  <text x="280" y="192" fill="#93a0bd" font-size="13">LLM routes each requirement</text>
+  <text x="280" y="210" fill="#93a0bd" font-size="13">into three spatial layers</text>
+  <text x="280" y="242" fill="#c3cbde" font-size="13">· HUMAN — face-local</text>
+  <text x="280" y="264" fill="#c3cbde" font-size="13">· SCREEN — 2D anchored</text>
+  <text x="280" y="286" fill="#c3cbde" font-size="13">· WORLD — 3D space</text>
+  <text x="280" y="308" fill="#7d8699" font-size="13">· + LOGIC (optional scripting)</text>
+  <line x1="596" y1="235" x2="646" y2="235" stroke="#5c6478" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <!-- Stage 2 -->
+  <rect x="654" y="130" width="340" height="210" rx="16" fill="#0e1f1d" stroke="#4dd6be" stroke-width="1.6"/>
+  <text x="678" y="168" fill="#4dd6be" font-size="19" font-weight="bold">② DECOMPOSE</text>
+  <text x="678" y="192" fill="#93a0bd" font-size="13">split into isolated subtasks,</text>
+  <text x="678" y="210" fill="#93a0bd" font-size="13">grounded by retrieval (RAG)</text>
+  <text x="678" y="242" fill="#c3cbde" font-size="13">· knowledge hierarchy:</text>
+  <text x="678" y="262" fill="#c3cbde" font-size="13">  sceneObject → component → property</text>
+  <text x="678" y="286" fill="#c3cbde" font-size="13">· skill packs per effect / game genre</text>
+  <text x="678" y="308" fill="#7d8699" font-size="13">· no cross-task references</text>
+  <line x1="994" y1="235" x2="1044" y2="235" stroke="#5c6478" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <!-- Stage 3 -->
+  <rect x="1052" y="130" width="340" height="210" rx="16" fill="#231b10" stroke="#e0af68" stroke-width="1.6"/>
+  <text x="1076" y="168" fill="#e0af68" font-size="19" font-weight="bold">③ PLAN</text>
+  <text x="1076" y="192" fill="#93a0bd" font-size="13">schema-validated plan</text>
+  <text x="1076" y="210" fill="#93a0bd" font-size="13">per subtask</text>
+  <text x="1076" y="242" fill="#c3cbde" font-size="13">· semantic placement only —</text>
+  <text x="1076" y="262" fill="#c3cbde" font-size="13">  LLM never writes raw coordinates</text>
+  <text x="1076" y="286" fill="#c3cbde" font-size="13">· resolver → exact transforms</text>
+  <text x="1076" y="308" fill="#7d8699" font-size="13">· invalid plans rejected at boundary</text>
+  <line x1="1222" y1="340" x2="1222" y2="398" stroke="#5c6478" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <!-- Stage 4 -->
+  <rect x="1052" y="406" width="340" height="210" rx="16" fill="#1a1426" stroke="#bb9af7" stroke-width="1.6"/>
+  <text x="1076" y="444" fill="#bb9af7" font-size="19" font-weight="bold">④ MATERIALIZE</text>
+  <text x="1076" y="468" fill="#93a0bd" font-size="13">deterministic code — no LLM</text>
+  <text x="1076" y="500" fill="#c3cbde" font-size="13">· ordered waves:</text>
+  <text x="1076" y="520" fill="#c3cbde" font-size="13">  assets → objects → properties</text>
+  <text x="1076" y="544" fill="#c3cbde" font-size="13">· real asset IDs written back to plan</text>
+  <text x="1076" y="566" fill="#7d8699" font-size="13">· same plan in, same effect out</text>
+  <line x1="1052" y1="511" x2="1002" y2="511" stroke="#5c6478" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <!-- Stage 5 -->
+  <rect x="424" y="406" width="570" height="210" rx="16" fill="#131f0f" stroke="#9ece6a" stroke-width="1.6"/>
+  <text x="448" y="444" fill="#9ece6a" font-size="19" font-weight="bold">⑤ EXECUTE LOOP</text>
+  <text x="672" y="444" fill="#93a0bd" font-size="13">MCP → Effect House</text>
+  <text x="448" y="480" fill="#c3cbde" font-size="14">execute tool call → observe real result → decide next step</text>
+  <text x="448" y="510" fill="#c3cbde" font-size="13">· bounded fix loop — at most 3 attempts</text>
+  <text x="448" y="532" fill="#c3cbde" font-size="13">· explicit session phases:</text>
+  <text x="448" y="552" fill="#7d8699" font-size="13">  planning → generating → awaiting result → fixing → finished</text>
+  <text x="448" y="580" fill="#7d8699" font-size="13">· tool responses cleaned before re-entering context</text>
+  <!-- fix loop arc -->
+  <path d="M 940 480 C 975 480 975 540 940 540" fill="none" stroke="#9ece6a" stroke-width="1.4" marker-end="url(#arr)"/>
+  <text x="968" y="516" fill="#9ece6a" font-size="12">fix</text>
+  <line x1="424" y1="511" x2="374" y2="511" stroke="#5c6478" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <!-- output pill -->
+  <rect x="52" y="466" width="316" height="90" rx="18" fill="#151a26" stroke="#3a4258" stroke-width="1.5"/>
+  <text x="210" y="505" fill="#e6e9f2" font-size="16" text-anchor="middle" font-weight="bold">runnable AR effect</text>
+  <text x="210" y="529" fill="#8b93a7" font-size="13" text-anchor="middle">live in TikTok Effect House</text>
+
+  <!-- brackets: judgment vs execution -->
+  <path d="M 256 660 L 256 676 L 1392 676 L 1392 660" fill="none" stroke="#2a3145" stroke-width="1.4"/>
+  <text x="824" y="702" fill="#66708a" font-size="14" letter-spacing="2" text-anchor="middle">①–③ LLM = JUDGMENT · UNDERSTAND, DECOMPOSE, PLAN (VALIDATED)</text>
+  <path d="M 424 738 L 424 754 L 1392 754 L 1392 738" fill="none" stroke="#2a3145" stroke-width="1.4"/>
+  <text x="908" y="780" fill="#66708a" font-size="14" letter-spacing="2" text-anchor="middle">④–⑤ CODE = EXECUTION · DETERMINISTIC, OBSERVABLE, RECOVERABLE</text>
+
+  <!-- eval footnote -->
+  <text x="750" y="836" fill="#454e64" font-size="13" text-anchor="middle">wrapped by an automated end-to-end evaluation harness — benchmark prompt sets · structural assertions · per-run artifacts &amp; previews</text>
+</svg>
