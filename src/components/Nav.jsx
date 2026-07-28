@@ -1,18 +1,32 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Nav() {
+  const [theme, setTheme] = useState(
+    () => document.documentElement.dataset.theme || 'light'
+  )
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    try { localStorage.setItem('yh-theme', theme) } catch (e) { /* private mode */ }
+  }, [theme])
+
   return (
-    <header className="nav">
-      <div className="wrap nav-inner">
-        <Link to="/" className="brand"><span className="sq" /> Yue Hu</Link>
-        <nav className="nav-links">
-          <a href="/#highlight">Highlight</a>
-          <a href="/#journey">Journey</a>
-          <a href="/#stack">Stack</a>
-          <a href="/#contact">Contact</a>
-        </nav>
-        <a href="/Yue_Hu_Resume.pdf" target="_blank" rel="noreferrer" className="nav-cta mono">résumé ↗</a>
-      </div>
+    <header className="v2-nav">
+      <Link to="/" className="v2-brand"><span className="zap">Y</span>ue Hu</Link>
+      <nav className="v2-nav-links mono">
+        <a href="/#highlight">WORK</a>
+        <a href="/#contact">ABOUT &amp; CONTACT</a>
+        <button
+          type="button"
+          className="v2-theme"
+          aria-label={theme === 'dark' ? 'Switch to light' : 'Switch to dark'}
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+        >
+          {theme === 'dark' ? '☀' : '☾'}
+        </button>
+        <a href="/Yue_Hu_Resume.pdf" target="_blank" rel="noreferrer" className="v2-nav-cta">RÉSUMÉ</a>
+      </nav>
     </header>
   )
 }

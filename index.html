@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      try { document.documentElement.dataset.theme = localStorage.getItem('yh-theme') || 'light' } catch (e) {}
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yue Hu — Design Engineer · Agentic AI × Creative Tooling</title>
@@ -9,6 +12,8 @@
     <meta property="og:description" content="Design engineer building agentic AI tools that reinvent how visual & creative work gets made." />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#07070b" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;700;900&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Marcellus+Sans&display=swap" rel="stylesheet">
   </head>
   <body>
     <div id="root"></div>

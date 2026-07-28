@@ -1,7 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import Nav from './components/Nav.jsx'
-import BackgroundFX from './components/BackgroundFX.jsx'
 import Home from './components/Home.jsx'
 import ProjectPage from './components/ProjectPage.jsx'
 
@@ -21,8 +20,6 @@ function HashScroll() {
 export default function App() {
   return (
     <>
-      <BackgroundFX />
-      <div className="veil" />
       <div className="content">
         <Nav />
         <HashScroll />

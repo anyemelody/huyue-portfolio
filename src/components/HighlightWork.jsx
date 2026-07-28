@@ -1,77 +1,76 @@
-import { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { flagships } from '../data/flagships.js'
-import PlaceholderThumb from './PlaceholderThumb.jsx'
+import { useRef } from 'react'
 
-function Flag({ f }) {
-  const ref = useRef()
-  const onMove = (e) => {
-    const reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches
-    const isTouch = window.matchMedia('(max-width:760px)').matches || 'ontouchstart' in window
-    if (reduce || isTouch) return
-    const el = ref.current
-    const r = el.getBoundingClientRect()
-    const px = (e.clientX - r.left) / r.width - 0.5
-    const py = (e.clientY - r.top) / r.height - 0.5
-    el.style.transform = `rotateY(${px * 6}deg) rotateX(${-py * 6}deg) translateZ(6px)`
-  }
-  const onLeave = () => { if (ref.current) ref.current.style.transform = '' }
-
-  return (
-    <article className="flag" ref={ref} onMouseMove={onMove} onMouseLeave={onLeave}>
-      <div className="flag-inner">
-        <div className="flag-visual">
-          <PlaceholderThumb hue={f.hue} />
-          {f.cover && (
-            <img className="flag-cover" src={f.cover} alt=""
-              onError={(e) => { e.currentTarget.style.display = 'none' }} />
-          )}
-          <div className="flag-badges">
-            {f.badges.map((b, i) => (
-              <span key={i} className={'badge ' + b[0]}>{b[1]}</span>
-            ))}
-          </div>
-          {!f.cover && <span className="ph">[ architecture diagram / demo gif ]</span>}
-        </div>
-        <div className="flag-body">
-          <span className="flag-cat">{f.cat}</span>
-          <span className="flag-title">{f.title}</span>
-          <span className="flag-desc" dangerouslySetInnerHTML={{ __html: f.tagline || f.desc }} />
-          <div className="metrics">
-            {f.metrics.map((m, i) => (
-              <div className="metric" key={i}>
-                <div className="v">{m[0]}</div>
-                <div className="l">{m[1]}</div>
-              </div>
-            ))}
-          </div>
-          <div className="stack">
-            {f.stack.map((t, i) => <span className="t" key={i}>{t}</span>)}
-          </div>
-          <div className="flag-links">
-            <Link to={'/work/' + f.slug}>open case ↗</Link>
-            {f.links.map((l, i) => <a key={i} href={l[1]}>{l[0]}</a>)}
-          </div>
-        </div>
-      </div>
-    </article>
-  )
-}
-
+/**
+ * HighlightWork (v2 / "5A") — keywords only, detail lives on the case page.
+ *
+ * AIGE runs full width with a three-column keyword strip under its cover;
+ * Sound Visualization is half width with a 2x2 video grid that plays one clip
+ * at rest and all four on hover.
+ * Both <article>s carry data-attract, so FieldParticles rings them on hover.
+ */
 export default function HighlightWork() {
+  const grid = useRef(null)
+  const playAll = () => grid.current?.querySelectorAll('video')
+    .forEach((v) => v.play?.().catch(() => {}))
+  const playOne = () => grid.current?.querySelectorAll('video')
+    .forEach((v, i) => { if (i) v.pause?.() })
+
   return (
-    <section className="highlight panel" id="highlight">
-      <div className="wrap">
-        <div className="section-tag mono">highlight work · now</div>
-        <h2 className="section-h">Two systems I'm building right now</h2>
-        <p className="section-sub">
-          The current chapter — agentic AI applied to visual &amp; musical creation. Depth over breadth:
-          architecture, demo, decisions.
-        </p>
-        <div className="flag-list">
-          {flagships.map((f, i) => <Flag key={i} f={f} />)}
-        </div>
+    <section className="v2-work" id="highlight">
+      <div className="v2-sec-head">
+        <h2>SELECTED WORK</h2>
+        <span>02 PROJECTS</span>
       </div>
+
+      <article className="v2-flag-lead" data-attract="aige">
+        <div className="v2-flag-meta">
+          <span className="hot">01</span>
+          <span>2024 — PRESENT</span>
+          <span>BYTEDANCE / TIKTOK</span>
+          <span className="hot push">SHIPPED</span>
+        </div>
+        <h3>Create with AI</h3>
+        <p className="v2-flag-line">an idea, typed — an AR effect, running</p>
+        <div className="v2-well v2-flag-cover">
+          <img src="/assets/aige/select_or_type_prompt.png"
+            alt="Create with AI — typing an effect idea" />
+        </div>
+        <div className="v2-keys">
+          <div><span>ARCHITECTURE</span><strong>LLM plans, code executes</strong></div>
+          <div><span>DECOMPOSITION</span><strong>Human · Screen · World</strong></div>
+          <div><span>GROUNDING</span><strong>Hierarchical RAG + MCP</strong></div>
+        </div>
+        <Link className="v2-case-link" to="/work/aige">READ THE CASE STUDY →</Link>
+      </article>
+
+      <article className="v2-flag-second" data-attract="sound-viz">
+        <div className="v2-flag-body">
+          <div className="v2-flag-meta">
+            <span className="hot">02</span>
+            <span>2026</span>
+            <span>SOLO · IN PROGRESS</span>
+          </div>
+          <div>
+            <h3>Sound Visualization</h3>
+            <p className="v2-flag-line">agents propose, humans commit</p>
+          </div>
+          <div className="v2-chips">
+            <span>ONE PROMPT → FOUR CANDIDATES</span>
+            <span>MUTATE / BREED / LOCK</span>
+            <span>LIVE MIC · STAGE PROJECTION</span>
+          </div>
+          <Link className="v2-case-link" to="/work/sound-viz">READ THE CASE STUDY →</Link>
+        </div>
+        <div className="v2-vfx" ref={grid} onMouseEnter={playAll} onMouseLeave={playOne}>
+          {['effect-01', 'effect-02', 'effect-03', 'effect-04'].map((n, i) => (
+            <div className="v2-well" key={n}>
+              <video src={`/assets/sound-viz/${n}.mp4`}
+                autoPlay={i === 0} loop muted playsInline />
+            </div>
+          ))}
+        </div>
+      </article>
     </section>
   )
 }

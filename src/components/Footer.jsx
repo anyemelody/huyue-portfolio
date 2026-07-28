@@ -1,20 +1,20 @@
 export default function Footer() {
   return (
-    <footer className="panel" id="contact">
-      <div className="wrap">
-        <div className="foot-cta">
-          Let's build the tools that <span className="g">redefine creative work.</span>
+    <footer className="v2-footer" id="contact">
+      <div className="v2-foot-top">
+        <div>
+          <div className="v2-foot-tag mono">SAY HELLO</div>
+          <a className="v2-foot-mail" href="mailto:anyemelody@gmail.com">anyemelody@gmail.com</a>
         </div>
-        <div className="foot-links">
-          <a href="mailto:anyemelody@gmail.com">email</a>
-          <a href="#">GitHub ↗</a>
-          <a href="#">LinkedIn ↗</a>
-          <a href="#">résumé.pdf ↗</a>
+        <div className="v2-foot-links mono">
+          <a href="https://github.com/anyemelody" target="_blank" rel="noreferrer">GITHUB</a>
+          <a href="https://www.linkedin.com/in/yuehu-melody" target="_blank" rel="noreferrer">LINKEDIN</a>
+          <a href="/Yue_Hu_Resume.pdf" target="_blank" rel="noreferrer">RÉSUMÉ</a>
         </div>
-        <div className="foot-meta">
-          <span>© 2026 Yue Hu · agentic engineer × creative tooling</span>
-          <span>huyue.space</span>
-        </div>
+      </div>
+      <div className="v2-foot-meta mono">
+        <span>YUE HU · NEW YORK</span>
+        <span>ENGINEER / CREATOR / ARTIST — SAME OBJECT</span>
       </div>
     </footer>
   )

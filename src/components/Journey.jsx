@@ -121,9 +121,6 @@ export default function Journey() {
         <div className="jstage">
           <div className="axis">
             <div className="axis-rail">
-              <div className="axis-now mono">
-                now<b>GenAI Engineer</b><span>↑ Highlight Work</span>
-              </div>
               <div className="axis-dot" />
               {eras.map((e, i) => (
                 <div
