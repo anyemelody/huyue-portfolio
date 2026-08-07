@@ -1,7 +1,7 @@
 /* ============================================================
    Homepage v2 — tokens, both palettes.
-     light (default) = 3A Paper Gallery + Sage
-     [data-theme="dark"] = 4A Oxide + the same two accents
+     [data-theme="dark"] (ship default) = 4A Oxide
+     light = 3A Paper Gallery + Sage, the same two accents on paper
    Import AFTER styles.css so the base-token override at the
    bottom wins. Media wells stay dark in BOTH themes.
    ============================================================ */
@@ -39,8 +39,12 @@
   --v2-line: #241f1a;
   --v2-row-line: #1e1a17;
   --v2-row-hover: #171310;
-  --v2-accent: #cf6144;
-  --v2-sage: #8ba173;
+  /* v3 accent swap: sage is now the VOICE (numbers, italics, ticker ◆),
+     oncidium gold is the SYSTEM (case links, footer links, availability dot).
+     The vars keep their old names so every selector below still works —
+     read --v2-accent as "dominant accent", --v2-sage as "secondary accent". */
+  --v2-accent: #8ba173;
+  --v2-sage: #e3b95c;
   --v2-sage-fill: rgba(139, 161, 115, .18);
   --v2-nav-bg: rgba(26, 22, 19, .86);
   --v2-nav-shadow: rgba(0, 0, 0, .45);
@@ -375,3 +379,106 @@ header.nav { background: var(--v2-nav-bg); }
 
 .v2-vfx { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .v2-vfx .v2-well { aspect-ratio: 16 / 10; }
+
+
+/* ============================================================
+   v3 — Self Intro (screen 1)
+   ============================================================ */
+.v3-intro {
+  position: relative; width: 100%; height: 100vh; overflow: hidden;
+  background: var(--v2-bg); color: var(--v2-ink);
+  font-family: var(--v2-display); cursor: pointer; user-select: none;
+}
+.v3-intro-glow { position: absolute; inset: 0; pointer-events: none; transition: background 1.2s ease; }
+.v3-intro-stage {
+  position: absolute; inset: 0; display: flex; align-items: center;
+  justify-content: center; gap: 6vw; padding: 0 8vw;
+}
+.v3-intro-cards { position: relative; width: min(32vw, 420px); aspect-ratio: 4/5; flex: none; }
+.v3-intro-card {
+  position: absolute; inset: 0;
+  transition: opacity .8s ease, transform .8s cubic-bezier(.22, 1, .36, 1);
+  box-shadow: 0 60px 120px -40px rgba(0, 0, 0, .95);
+}
+.v3-intro-card > span {
+  position: absolute; left: 14px; bottom: 12px;
+  font-size: 9.5px; letter-spacing: .2em; color: rgba(255, 255, 255, .6);
+}
+.v3-intro-copy { max-width: 560px; }
+.v3-intro-kicker { font-size: 11px; letter-spacing: .26em; transition: color .8s ease; }
+.v3-intro-title { margin-top: 14px; font-size: clamp(44px, 5vw, 72px); font-weight: 900; letter-spacing: -.035em; line-height: .98; }
+.v3-intro-italic { font-family: var(--v2-serif); font-style: italic; font-size: clamp(46px, 5.2vw, 74px); line-height: 1.02; transition: color .8s ease; }
+.v3-intro-body { margin-top: 18px; font-size: 17px; line-height: 1.64; color: var(--v2-soft); text-wrap: pretty; min-height: 84px; }
+.v3-intro-chips { margin-top: 26px; display: flex; gap: 10px; }
+.v3-intro-chips button {
+  cursor: pointer; font-size: 10.5px; letter-spacing: .18em;
+  padding: 9px 17px; border-radius: 100px; border: 1px solid; transition: all .5s ease;
+}
+.v3-intro-hint {
+  position: absolute; bottom: 28px; left: 32px; font-size: 10.5px; letter-spacing: .18em;
+  color: var(--v2-soft); pointer-events: none; animation: v3pulse 3.2s ease-in-out infinite;
+}
+.v3-intro-counter { position: absolute; bottom: 28px; right: 32px; font-size: 10.5px; letter-spacing: .18em; color: var(--v2-dim); pointer-events: none; }
+@keyframes v3pulse { 0%, 100% { opacity: .35 } 50% { opacity: 1 } }
+@media (max-width: 900px) {
+  .v3-intro-stage { flex-direction: column; gap: 24px; padding: 72px 24px 0; }
+  .v3-intro-cards { width: min(60vw, 300px); }
+}
+
+/* ============================================================
+   v3 — ticker
+   ============================================================ */
+.v3-ticker { overflow: hidden; border-top: 1px solid var(--v2-line); border-bottom: 1px solid var(--v2-line); padding: 14px 0; background: var(--v2-surface); }
+.v3-ticker-track { display: flex; width: max-content; animation: v3slide 38s linear infinite; }
+.v3-ticker-run { display: flex; gap: 44px; padding-right: 44px; font-size: 12px; letter-spacing: .16em; color: var(--v2-dim); }
+.v3-ticker-item { display: flex; gap: 44px; }
+.v3-ticker-item .dia { color: var(--v2-accent); }
+@keyframes v3slide { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+
+/* ============================================================
+   v3 — giant section titles + Highlight Projects
+   ============================================================ */
+.v3-giant {
+  margin: 6px 0 0 -.05em; font-size: clamp(64px, 11vw, 190px); line-height: .92;
+  font-weight: 900; letter-spacing: -.04em; color: var(--v2-ink); text-transform: uppercase;
+}
+.v3-work { padding: 88px 40px 40px; font-family: var(--v2-display); color: var(--v2-ink); background: var(--v2-bg); }
+.v3-sec-head { border-bottom: 1px solid var(--v2-line); padding-bottom: 26px; margin-bottom: 64px; }
+.v3-sec-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; font-size: 12px; letter-spacing: .18em; color: var(--v2-dim); }
+
+.v3-flag-lead { margin-bottom: 140px; }
+.v3-flag-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+@media (max-width: 900px) { .v3-flag-grid { grid-template-columns: 1fr; gap: 28px; } }
+.v3-flag-cover { display: block; border-radius: 5px; }
+.v3-flag-cover img { width: 100%; height: auto; display: block; transform-origin: center; will-change: transform; }
+.v3-flag-side { display: flex; flex-direction: column; gap: 18px; }
+.v3-flag-side h3 { margin: 0 0 6px; font-size: clamp(34px, 4.4vw, 64px); line-height: .98; font-weight: 900; letter-spacing: -.03em; }
+.v3-keys { display: flex; flex-direction: column; border-top: 1px solid var(--v2-line); }
+.v3-keys > div { padding: 14px 0 12px; border-bottom: 1px solid var(--v2-line); }
+.v3-keys span { display: block; font-size: 11px; letter-spacing: .1em; color: var(--v2-dim); margin-bottom: 5px; }
+.v3-keys strong { font-size: 16px; font-weight: 700; letter-spacing: -.01em; }
+
+.v3-flag-second {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 56px; align-items: center; margin-left: 8%; margin-top: 40px;
+}
+@media (max-width: 900px) { .v3-flag-second { grid-template-columns: 1fr; gap: 28px; margin-left: 0; } }
+.v3-flag-second h3 { margin: 0 0 6px; font-size: clamp(28px, 3.4vw, 46px); line-height: 1.02; font-weight: 900; letter-spacing: -.025em; }
+.v2-vfx { transform-origin: center; will-change: transform; }
+
+/* ============================================================
+   v3 — Feature Work (Lusion catalogue)
+   ============================================================ */
+.v3-feature { padding: 24px 40px 96px; font-family: var(--v2-display); color: var(--v2-ink); background: var(--v2-bg); }
+.v3-feature-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 48px; flex-wrap: wrap; margin-bottom: 56px; }
+.v3-feature-head .v3-giant { margin-top: 0; }
+.v3-feature-head p { margin: 10px 0 0; max-width: 38ch; font-size: 12px; letter-spacing: .1em; line-height: 1.8; color: var(--v2-soft); text-transform: uppercase; }
+.v3-feature-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px 28px; }
+@media (max-width: 760px) { .v3-feature-grid { grid-template-columns: 1fr; } }
+.fw-card { display: flex; flex-direction: column; gap: 16px; color: var(--v2-ink); min-width: 0; }
+.fw-well { aspect-ratio: 16/11; }
+.fw-well img { transform: scale(1.001); transition: transform 1s cubic-bezier(.22, 1, .36, 1); }
+.fw-card:hover .fw-well img { transform: scale(1.055); }
+.fw-meta { font-size: 11px; letter-spacing: .12em; color: var(--v2-dim); }
+.fw-name { margin-top: 6px; font-size: clamp(26px, 2.6vw, 40px); font-weight: 500; letter-spacing: -.02em; line-height: 1.05; }
+.fw-card:hover .fw-name { color: var(--v2-sage); }
