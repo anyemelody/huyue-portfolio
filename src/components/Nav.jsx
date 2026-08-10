@@ -26,7 +26,7 @@ export default function Nav() {
         >
           {theme === 'dark' ? '☀' : '☾'}
         </button>
-        <a href="/Yue_Hu_Resume.pdf" target="_blank" rel="noreferrer" className="v2-nav-cta">RÉSUMÉ</a>
+        <a href="/Yue_Hu_Resume_New.pdf" target="_blank" rel="noreferrer" className="v2-nav-cta">RÉSUMÉ</a>
       </nav>
     </header>
   )

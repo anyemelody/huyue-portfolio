@@ -26,7 +26,7 @@ export default function Footer() {
           <div className="v2-foot-links mono">
             <a href="https://github.com/anyemelody" target="_blank" rel="noreferrer">GITHUB</a>
             <a href="https://www.linkedin.com/in/yuehu-melody" target="_blank" rel="noreferrer">LINKEDIN</a>
-            <a href="/Yue_Hu_Resume.pdf" target="_blank" rel="noreferrer">RÉSUMÉ</a>
+            <a href="/Yue_Hu_Resume_New.pdf" target="_blank" rel="noreferrer">RÉSUMÉ</a>
           </div>
         </div>
         <div className="v2-foot-meta mono">

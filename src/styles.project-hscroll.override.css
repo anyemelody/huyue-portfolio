@@ -1,1 +1,5 @@
 .ph-hero-media iframe { pointer-events: none; }
+
+/* Keep the project typography in the portfolio's green display family. */
+.ph-overview h1,
+.ph-section-copy h2 { color: #9db08f; }
