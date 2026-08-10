@@ -18,10 +18,12 @@ function HashScroll() {
 }
 
 export default function App() {
+  const { pathname } = useLocation()
+  const isProjectPage = pathname.startsWith('/work/')
   return (
     <>
       <div className="content">
-        <Nav />
+        {!isProjectPage && <Nav />}
         <HashScroll />
         <Routes>
           <Route path="/" element={<Home />} />

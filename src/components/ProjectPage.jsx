@@ -1,6 +1,82 @@
 import { useEffect, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { bySlug } from '../data/projects.js'
+import ProjectSlides from './ProjectSlides.jsx'
+import ProjectHScroll from './ProjectHScroll.jsx'
+
+const HOME_CASE_ORDER = ['aige', 'sound-viz', 'tiktok-effect-house', 'hershey-pop-kisses', 'ibm-watson', 'vuse-unboxing-ar', 'palace-museum', 'santander']
+
+const plain = (value = '') => value.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim()
+const paragraphs = (value = '') => value.split(/\n{2,}/).map((part) => plain(part.replace(/^#{2,3}\s.*\n?/, ''))).filter(Boolean)
+const storySections = (value = '', fallback = '') => {
+  const sections = []
+  let active = null
+  value.split(/\n{2,}/).forEach((block) => {
+    const lines = block.trim().split('\n')
+    const heading = lines[0]?.match(/^#{2,3}\s+(.+)/)
+    if (heading) {
+      active = { title: plain(heading[1]), body: plain(lines.slice(1).join(' ')) }
+      sections.push(active)
+    } else if (active) {
+      active.body = [active.body, plain(block)].filter(Boolean).join(' ')
+    }
+  })
+  return sections.filter((section) => section.body).length
+    ? sections.filter((section) => section.body)
+    : [{ title: 'Project approach', body: fallback }]
+}
+
+function makeDeck(project) {
+  const detail = project.detail || {}
+  const copy = paragraphs(project.story || '')
+  const lead = plain(detail.body || copy[0] || project.name)
+  const body = copy.find((item) => item !== lead) || lead
+  const role = Array.isArray(detail.role) ? detail.role : plain(detail.role || '').replace(/^Role:\s*/i, '').split(/\s*[·,/]\s*/).filter(Boolean)
+  const facts = [['CLIENT', detail.client || 'Selected work'], ['TIMELINE', detail.year || project.era], ['MEDIUM', detail.medium || 'Interactive experience']]
+  const images = [project.cover, ...(project.images || [])].filter(Boolean)
+  const contentSections = storySections(project.story, body).map((section, index) => ({
+    ...section,
+    media: images.slice(3 + index * 2, 5 + index * 2),
+  }))
+  const usedImages = 3 + contentSections.length * 2
+  const visualSections = images.slice(usedImages).reduce((all, image, index) => {
+    if (index % 3 === 0) all.push([])
+    all[all.length - 1].push(image)
+    return all
+  }, []).map((media, index) => ({
+    title: `Visual archive ${String(index + 1).padStart(2, '0')}`,
+    body: 'Supporting documentation and visual development from the original project case study.',
+    media,
+    archive: true,
+  }))
+  const sections = [...contentSections, ...visualSections]
+  const projectIndex = HOME_CASE_ORDER.indexOf(project.slug)
+  const previousSlug = HOME_CASE_ORDER[(projectIndex - 1 + HOME_CASE_ORDER.length) % HOME_CASE_ORDER.length]
+  const nextSlug = HOME_CASE_ORDER[(projectIndex + 1) % HOME_CASE_ORDER.length]
+  const previous = bySlug[previousSlug]
+  const next = bySlug[nextSlug]
+  return {
+    slug: project.slug,
+    title: project.name,
+    hero: project.cover || images[0],
+    video: project.video || null,
+    embed: detail.videoEmbed || null,
+    kicker: project.slug === 'aige' || project.slug === 'sound-viz' ? 'HIGHLIGHT PROJECT / CASE STUDY' : 'SELECTED SHIPPED WORK / CASE STUDY',
+    lead,
+    body,
+    roles: role.length ? role : ['Creative Technology', 'Experience Design'],
+    facts,
+    link: detail.link || (detail.links && detail.links[0]),
+    media: (images.length ? images : [project.cover]).slice(0, 3),
+    sectionTitle: 'Work in',
+    sectionItalic: 'motion.',
+    storyTitle: 'How the system',
+    storyItalic: 'takes shape.',
+    sections,
+    previous: { slug: previousSlug, title: previous?.name || 'All projects', meta: previous?.era || 'PORTFOLIO' },
+    next: { slug: nextSlug, title: next?.name || 'All projects', meta: next?.era || 'PORTFOLIO' },
+  }
+}
 
 function TikTokEffectHouseCase({ p }) {
   const rail = useRef(null)
@@ -127,7 +203,7 @@ export default function ProjectPage() {
   // full depth -> all images; light -> first 6
   const imgs = p.depth === 'full' ? p.images : p.images.slice(0, 6)
 
-  if (slug === 'tiktok-effect-house') return <TikTokEffectHouseCase p={p} />
+  if (HOME_CASE_ORDER.includes(slug)) return <ProjectHScroll deck={makeDeck(p)} />
 
   return (
     <main className="project-page">
