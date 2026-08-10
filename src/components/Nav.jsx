@@ -15,8 +15,8 @@ export default function Nav() {
     <header className="v2-nav">
       <Link to="/" className="v2-brand"><span className="zap">Y</span>ue Hu</Link>
       <nav className="v2-nav-links mono">
-        <a href="/#highlight">WORK</a>
-        <a href="/#index">INDEX</a>
+        <a href="/#work">WORK</a>
+        <a href="/#art">ART</a>
         <a href="/#contact">ABOUT &amp; CONTACT</a>
         <button
           type="button"

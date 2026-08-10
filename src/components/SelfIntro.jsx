@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 /**
  * SelfIntro — homepage screen 1 (v3).
@@ -23,7 +23,7 @@ const STATES = [
     key: 'artist', label: 'ARTIST', tint: '#e3b95c', kicker: 'ALL ALONG', tag: 'SELF · 03',
     title: 'Pictures that', italic: 'behave.',
     body: 'Creative coding, generative growth, portraits with rules inside them. The sketchbook happens to compile.',
-    src: '/assets/self/lan.gif', pos: '50% 42%'
+    src: '/assets/self/Rain_Rite_Performance.JPG', pos: '50% 42%'
   }
 ]
 
@@ -31,6 +31,16 @@ export default function SelfIntro() {
   const [i, setI] = useState(0)
   const S = STATES[i]
   const next = () => setI((i + 1) % 3)
+
+  // Let the three identities introduce themselves when the visitor is idle.
+  // Any click changes `i`, which restarts the five-second idle window.
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
+    const timer = window.setInterval(() => {
+      if (!document.hidden) next()
+    }, 5000)
+    return () => window.clearInterval(timer)
+  }, [i])
 
   return (
     <section className="v3-intro" onClick={next}>
@@ -43,15 +53,14 @@ export default function SelfIntro() {
               transform: n === i ? 'translateY(0) rotate(0deg)' : n === (i + 1) % 3 ? 'translateY(26px) rotate(2.5deg)' : 'translateY(-26px) rotate(-2.5deg)'
             }}>
               <div style={{ width: '100%', height: '100%', backgroundImage: `url(${s.src})`, backgroundSize: 'cover', backgroundPosition: s.pos }} />
-              <span className="mono">{s.tag}</span>
             </div>
           ))}
         </div>
         <div className="v3-intro-copy">
-          <div className="mono v3-intro-kicker" style={{ color: S.tint }}>{S.kicker}</div>
-          <div className="v3-intro-title">{S.title}</div>
-          <div className="v3-intro-italic" style={{ color: S.tint }}>{S.italic}</div>
-          <p className="v3-intro-body">{S.body}</p>
+          <div className="mono v3-intro-kicker" data-home-reveal="1" style={{ color: S.tint }}>{S.kicker}</div>
+          <div className="v3-intro-title" data-home-reveal="1">{S.title}</div>
+          <div className="v3-intro-italic" data-home-reveal="1" style={{ color: S.tint }}>{S.italic}</div>
+          <p className="v3-intro-body" data-home-reveal="1">{S.body}</p>
           <div className="v3-intro-chips">
             {STATES.map((s, n) => (
               <button key={s.key} type="button"
@@ -66,8 +75,7 @@ export default function SelfIntro() {
           </div>
         </div>
       </div>
-      <div className="mono v3-intro-hint">CLICK ANYWHERE TO MEET THE NEXT ONE</div>
-      <div className="mono v3-intro-counter">0{i + 1} / 03</div>
+      <div className="mono v3-intro-hint">SCROLL TO EXPLORE NEXT</div>
     </section>
   )
 }

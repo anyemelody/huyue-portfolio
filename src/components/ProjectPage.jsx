@@ -1,6 +1,107 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { bySlug } from '../data/projects.js'
+
+function TikTokEffectHouseCase({ p }) {
+  const rail = useRef(null)
+  const d = p.detail || {}
+  const media = [p.cover, ...(p.images || [])].filter(Boolean)
+
+  useEffect(() => {
+    const el = rail.current
+    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
+    let frame = 0
+    const update = () => {
+      frame = 0
+      const box = el.getBoundingClientRect()
+      const progress = Math.min(1, Math.max(0, -box.top / Math.max(1, box.height - window.innerHeight)))
+      el.style.setProperty('--tiktok-rail-progress', progress.toFixed(4))
+    }
+    const onScroll = () => { if (!frame) frame = requestAnimationFrame(update) }
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
+  }, [])
+
+  return (
+    <main className="tiktok-case">
+      <div className="tiktok-case-topline mono">
+        <Link to="/#work">← back to selected work</Link>
+        <span>CASE STUDY / 2021 — PRESENT</span>
+      </div>
+
+      <section className="tiktok-case-hero">
+        <div className="tiktok-case-hero-copy">
+          <span className="mono">TIKTOK / AR AUTHORING PLATFORM</span>
+          <h1>Effect<br /><em>House.</em></h1>
+          <p>Create, publish, and share augmented-reality effects for TikTok.</p>
+        </div>
+        <div className="tiktok-case-video">
+          <iframe src={d.videoEmbed} title="TikTok Effect House video" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
+        </div>
+      </section>
+
+      <section className="tiktok-case-intro">
+        <p>{d.body}</p>
+        <div className="tiktok-case-facts mono">
+          <span>CLIENT / TIKTOK</span><span>LOCATION / SAN JOSE</span><span>ROLE / PRODUCT + CREATIVE TECHNOLOGY</span>
+        </div>
+        <a className="tiktok-case-link mono" href="https://effecthouse.tiktok.com/" target="_blank" rel="noreferrer">TRY EFFECT HOUSE ↗</a>
+      </section>
+
+      <section className="tiktok-rail" ref={rail}>
+        <div className="tiktok-rail-stage">
+          <div className="tiktok-rail-track">
+            <article className="tiktok-rail-panel tiktok-rail-panel--text">
+              <div className="mono tiktok-rail-index">01 / PROJECT OBJECTIVE</div>
+              <div>
+                <h2>More ways to<br /><em>make effects.</em></h2>
+                <p>Effect House opens TikTok’s effects universe to creators, designers, and developers — making Community Effects possible without a traditional production pipeline.</p>
+              </div>
+            </article>
+            <article className="tiktok-rail-panel">
+              <div className="tiktok-rail-visual"><img src={media[1] || media[0]} alt="Effect House template example" /></div>
+              <div className="tiktok-rail-copy">
+                <div className="mono tiktok-rail-index">02 / TEMPLATE PRODUCTION</div>
+                <h2>Ideas that<br /><em>ship.</em></h2>
+                <p>I led the Template Team, turning new product capabilities and trends into inspiring, production-ready effects — plus tutorials and live education to help creators use them.</p>
+                <div className="tiktok-case-metrics"><span><b>120+</b> templates delivered</span><span><b>40%</b> effect conversion</span></div>
+              </div>
+            </article>
+            <article className="tiktok-rail-panel">
+              <div className="tiktok-rail-copy">
+                <div className="mono tiktok-rail-index">03 / GRAPH PRODUCTION</div>
+                <h2>Visual logic,<br /><em>made legible.</em></h2>
+                <p>Graph is a node-based coding system for building visual and interactive effects. I researched, designed, prototyped, and shipped nodes — including their inputs, outputs, demos, and creator documentation.</p>
+                <div className="tiktok-case-tags mono"><span>NODE DESIGN</span><span>PROTOTYPING</span><span>DOCUMENTATION</span></div>
+              </div>
+              <div className="tiktok-rail-visual"><img src={media[8] || media[2] || media[0]} alt="Effect House graph interface" /></div>
+            </article>
+            <article className="tiktok-rail-panel">
+              <div className="tiktok-rail-visual"><img src={media[12] || media[3] || media[0]} alt="Effect House material graph node" /></div>
+              <div className="tiktok-rail-copy">
+                <div className="mono tiktok-rail-index">04 / SCREEN ART NODES</div>
+                <h2>Effects as<br /><em>a language.</em></h2>
+                <p>I designed screen-effect nodes across three families: transitions for property animation, 2D SDF shape generation, and packaged effects such as dissolve, blur, edge detection, and math-art functions.</p>
+                <div className="tiktok-case-tags mono"><span>TRANSITION</span><span>2D SDF</span><span>EFFECT</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <footer className="tiktok-case-footer">
+        <span className="mono">TIKTOK EFFECT HOUSE / 2021 — PRESENT</span>
+        <Link className="mono" to="/#work">BACK TO SELECTED WORK ↑</Link>
+      </footer>
+    </main>
+  )
+}
 
 export default function ProjectPage() {
   const { slug } = useParams()
@@ -22,22 +123,32 @@ export default function ProjectPage() {
 
   const d = p.detail || {}
   const facts = [d.year, d.location, d.medium, d.client].filter(Boolean).join('  ·  ')
+  const legacyVideo = d.videoEmbed
   // full depth -> all images; light -> first 6
   const imgs = p.depth === 'full' ? p.images : p.images.slice(0, 6)
 
+  if (slug === 'tiktok-effect-house') return <TikTokEffectHouseCase p={p} />
+
   return (
     <main className="project-page">
-      <div className="wrap">
-        <Link className="proj-back mono" to="/#journey">← back</Link>
+      <div className="wrap project-wrap">
+        <div className="proj-topline mono">
+          <Link className="proj-back" to="/#work">← back to selected work</Link>
+          <span>CASE STUDY / {p.era}</span>
+        </div>
 
         <header className="proj-head">
-          <div className="proj-era mono">{p.era}</div>
+          <div className="proj-era mono">SELECTED SHIPPED WORK</div>
           <h1 className="proj-title">{p.name}</h1>
           {facts && <div className="proj-facts mono">{facts}</div>}
           {d.award && <div className="proj-award">{d.award}</div>}
         </header>
 
-        {p.video ? (
+        {legacyVideo ? (
+          <div className="proj-hero proj-legacy-video">
+            <iframe src={legacyVideo} title={`${p.name} video`} allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
+          </div>
+        ) : p.video ? (
           <div className="proj-hero">
             <video src={p.video} controls autoPlay muted loop playsInline
               onError={(e) => { const h = e.currentTarget.closest('.proj-hero'); if (h) h.style.display = 'none' }} />
@@ -51,6 +162,7 @@ export default function ProjectPage() {
 
         <div className="proj-grid">
           <div className="proj-main">
+            {(d.body || p.story) && <div className="proj-section-label mono">PROJECT OVERVIEW</div>}
             {d.body && <p className="proj-body" dangerouslySetInnerHTML={{ __html: d.body }} />}
             {d.arch && (
               <pre className="arch" dangerouslySetInnerHTML={{ __html: d.arch }} />
@@ -151,7 +263,7 @@ export default function ProjectPage() {
         )}
 
         <div className="proj-foot">
-          <Link className="proj-back mono" to="/#journey">← back to the journey</Link>
+          <Link className="proj-back mono" to="/#work">← back to highlights</Link>
         </div>
       </div>
     </main>
