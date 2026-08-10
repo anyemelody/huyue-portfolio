@@ -21,6 +21,10 @@ export default function ArtGallery() {
       const box = el.getBoundingClientRect()
       const progress = Math.max(0, Math.min(1, -box.top / Math.max(1, box.height - window.innerHeight)))
       el.style.setProperty('--gallery-progress', progress.toFixed(4))
+      const titleIn = Math.max(0, Math.min(1, progress / 0.1))
+      const titleOut = Math.max(0, Math.min(1, (progress - 0.22) / 0.16))
+      el.style.setProperty('--art-title-opacity', (titleIn * (1 - titleOut)).toFixed(3))
+      el.style.setProperty('--art-title-y', `${(((1 - titleIn) * 30) - titleOut * 22).toFixed(1)}px`)
     }
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(update)
@@ -39,9 +43,9 @@ export default function ArtGallery() {
     <section className="art-gallery" id="art" ref={section}>
       <div className="art-gallery-stage" ref={frame}>
         <div className="art-gallery-head">
-          <div className="mono art-gallery-kicker" data-home-reveal="1">03 — ART WORK / CREATIVE CODING</div>
-          <h2 data-home-reveal="1">Pictures that <em>behave.</em></h2>
-          <p data-home-reveal="1">Five small worlds built with systems, motion, and rules. Scroll to walk the gallery; open a work to play with it.</p>
+          <div className="mono art-gallery-kicker">03 — ART WORK / CREATIVE CODING</div>
+          <h2>Pictures that <em>behave.</em></h2>
+          <p>Five small worlds built with systems, motion, and rules. Scroll to walk the gallery; open a work to play with it.</p>
         </div>
 
         <div className="art-gallery-room" aria-hidden="true">
