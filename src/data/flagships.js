@@ -4,7 +4,7 @@
 export const flagships = [
   {
     slug: 'aige', depth: 'full', keys: [],
-    title: 'AIGE — AI-Generated Experience Engine',
+    title: 'AI Generate Effects',
     cat: 'agentic AI tool · genAI engineer era',
     badges: [['flag', 'FLAGSHIP']],
     tagline:
@@ -22,14 +22,14 @@ export const flagships = [
       '        Code = asset lookup · generation · materialize into commands\n' +
       '<span class="lbl">ground</span> hierarchical knowledge: sceneObject → component → property\n' +
       '        + retrievable skill packs per game / effect genre (RAG)\n' +
-      '<span class="lbl">loop</span>   agent plans tool call → executes in Effect House via MCP → observes result → next step\n' +
+      '<span class="lbl">loop</span>   agent plans an action → executes in Effect House → observes the result → next step\n' +
       '<span class="lbl">eval</span>   benchmark + automated validation of generated effects → drives end-to-end success\n' +
       '<span class="lbl">shipped</span> in TikTok Effect House',
     role: 'Role: <b>AI system &amp; architecture</b> — the layered decomposition, the validated plan schema per layer, and the core split where the <b>LLM only plans while deterministic code executes</b> (for reliability &amp; success rate). <span class="ph2">[ exact scope — your words ]</span>',
     metrics: [['shipped', 'TikTok Effect House'], ['3 layers', 'human · screen · world'], ['LLM plans', 'code executes']],
-    stack: ['Agent architecture', 'Layered scene decomposition', 'LLM planning + classification', 'Schema-validated execution', 'RAG + skill packs', 'MCP tool loop', 'Evaluation & benchmarks'],
+    stack: ['Agent architecture', 'Layered scene decomposition', 'LLM planning + classification', 'Schema-validated execution', 'RAG + skill packs', 'Evaluation & benchmarks'],
     links: [['Create with AI ↗', 'https://effecthouse.tiktok.com/learn/guides/ai-capabilities/create-with-ai']],
-    cover: '/assets/aige/select_or_type_prompt.png',
+    cover: '/assets/aige/cover_image.gif',
     video: null,  // TODO(Yue): set back to '/assets/aige/demo.mp4' once the demo video is recorded
     images: [],  // media now placed inside story sections (see projectStories.js aige)
     hue: 262,

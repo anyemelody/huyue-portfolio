@@ -1,5 +1,10 @@
-.ph-hero-media iframe { pointer-events: none; }
-
 /* Keep the project typography in the portfolio's green display family. */
 .ph-overview h1,
 .ph-section-copy h2 { color: #9db08f; }
+
+/* Match the scale of media-only panels while keeping the copy on the left. */
+.ph-section-media figure { height: 62dvh; }
+
+@media (max-width: 760px) {
+  .ph-section-media figure { height: 44svh; }
+}

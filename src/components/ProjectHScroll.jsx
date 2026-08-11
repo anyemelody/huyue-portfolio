@@ -6,7 +6,7 @@ import '../styles.project-hscroll.override.css'
 function Media({ src, embed, alt }) {
   if (embed) return <iframe src={embed} title={alt} allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
   if (!src) return <div className="ph-empty" />
-  return /\.(mp4|webm)$/i.test(src)
+  return /\.(mp4|webm|mov)$/i.test(src)
     ? <video src={src} autoPlay muted loop playsInline aria-label={alt} />
     : <img src={src} alt={alt} loading="lazy" />
 }
@@ -50,10 +50,10 @@ export default function ProjectHScroll({ deck }) {
       <div className="ph-spacer" ref={spacer}>
         <div className="ph-stage">
           <div className="ph-track" ref={track}>
-            <section className="ph-panel ph-hero">
+            {!deck.hideHero && <section className="ph-panel ph-hero">
               <div className="ph-hero-media"><Media src={deck.video || deck.hero} embed={deck.embed} alt={`${deck.title} video`} /></div>
               <div className="ph-hero-shade" /><span className="ph-scroll mono">SCROLL →</span>
-            </section>
+            </section>}
 
             <section className="ph-panel ph-overview">
               <div className="ph-overview-copy"><span className="ph-kicker mono">{deck.kicker}</span><h1>{deck.title}</h1><p className="ph-lead">{deck.lead}</p><p className="ph-body">{deck.body}</p>{deck.link && <a className="ph-link mono" href={deck.link[1]} target="_blank" rel="noreferrer">{deck.link[0]}</a>}</div>
@@ -62,14 +62,26 @@ export default function ProjectHScroll({ deck }) {
 
             {deck.media.length > 0 && <section className="ph-panel ph-gallery">{deck.media.map((src, index) => <figure key={src} className={index % 2 ? 'is-low' : ''}><Media src={src} alt={`${deck.title} selected work ${index + 1}`} /></figure>)}</section>}
 
-            {deck.sections.map((section, index) => <section className="ph-panel ph-section" key={`${section.title}-${index}`}>
-              <div className="ph-section-copy"><span className="ph-kicker mono">{String(index + 1).padStart(2, '0')} / {section.archive ? 'VISUAL ARCHIVE' : 'PROCESS NOTES'}</span><h2>{section.title}</h2><p>{section.body}</p></div>
-              {section.media?.length > 0 && <div className="ph-section-media">{section.media.map((src) => <figure key={src}><Media src={src} alt={`${deck.title} ${section.title}`} /></figure>)}</div>}
-            </section>)}
+            {deck.sections.map((section, index) => {
+              const kicker = section.kicker || `${String(index + 1).padStart(2, '0')} / ${section.archive ? 'VISUAL ARCHIVE' : 'PROCESS NOTES'}`
+              if (section.type === 'media-row') return <section className={`ph-panel ph-gallery ${section.className || ''}`} key={`media-${index}`}>
+                {section.media.map((item, mediaIndex) => {
+                  const node = typeof item === 'string' ? { src: item, ratio: '16 / 9' } : item
+                  return <figure key={node.src} className={mediaIndex % 2 ? 'is-low' : ''} style={{ aspectRatio: node.ratio }}><Media src={node.src} alt={`${deck.title} visual ${mediaIndex + 1}`} /></figure>
+                })}
+              </section>
+              return <section className="ph-panel ph-section" key={`${section.title}-${index}`}>
+                <div className="ph-section-copy"><span className="ph-kicker mono">{kicker}</span><h2>{section.title}</h2><p>{section.body}</p></div>
+                {section.media?.length > 0 && <div className="ph-section-media">{section.media.map((item) => {
+                  const node = typeof item === 'string' ? { src: item } : item
+                  return <figure key={node.src} style={node.ratio ? { aspectRatio: node.ratio } : undefined}><Media src={node.src} alt={`${deck.title} ${section.title}`} /></figure>
+                })}</div>}
+              </section>
+            })}
 
             <section className="ph-panel ph-footer">
               <Link className="ph-next" to={`/work/${deck.next.slug}`}><span className="ph-kicker mono">NEXT PROJECT</span><strong>{deck.next.title}<b>→</b></strong><small className="mono">{deck.next.meta}</small></Link>
-              <Link className="ph-prev" to={`/work/${deck.previous.slug}`}><span className="mono">PREVIOUS PROJECT</span><b>← {deck.previous.title}</b></Link>
+              {!deck.hidePrevious && <Link className="ph-prev" to={`/work/${deck.previous.slug}`}><span className="mono">PREVIOUS PROJECT</span><b>← {deck.previous.title}</b></Link>}
             </section>
           </div>
           <div className="ph-hud"><Link to="/" className="ph-brand"><span>Y</span>ue Hu</Link><Link to="/#work" className="mono">← ALL PROJECTS</Link></div>

@@ -9,20 +9,20 @@ import { useEffect, useState } from 'react'
 const STATES = [
   {
     key: 'engineer', label: 'ENGINEER', tint: '#9db08f', kicker: 'BY DAY', tag: 'SELF · 01',
-    title: 'AI systems,', italic: 'built to ship.',
-    body: 'Nine years on the seam between engineering and art — shader graphs and stage projections, agent architectures and AR installations. The through-line: taking a vague idea all the way to a thing that runs.',
+    title: 'An engineer who', italic: 'owns the product.',
+    body: 'Nine years of client-facing agency experience, turning ambiguous ideas into shipped systems and products — across AI agents, real-time graphics, and AR/VR.',
     src: '/assets/self/selfie.JPG', pos: '38% 40%'
   },
   {
-    key: 'drummer', label: 'DRUMMER', tint: '#e3b95c', kicker: 'AFTER HOURS', tag: 'SELF · 02',
+    key: 'drummer', label: 'MUSICIAN', tint: '#e3b95c', kicker: 'AFTER HOURS', tag: 'SELF · 02',
     title: 'Keeping time,', italic: 'making noise.',
-    body: 'Also a drummer — my band writes and produces original songs. The groove is just another system that has to feel right.',
+    body: 'Drummer of Di Band, an indie rock band focused on writing and performing original songs.',
     src: '/assets/self/drum_cover.JPG', pos: '50% 38%'
   },
   {
     key: 'artist', label: 'ARTIST', tint: '#e3b95c', kicker: 'ALL ALONG', tag: 'SELF · 03',
     title: 'Pictures that', italic: 'behave.',
-    body: 'Creative coding, generative growth, portraits with rules inside them. The sketchbook happens to compile.',
+    body: 'Obsessed with generative art, VJing, and live performance — making systems that move, respond, and take on a life of their own.',
     src: '/assets/self/Rain_Rite_Performance.JPG', pos: '50% 42%'
   }
 ]

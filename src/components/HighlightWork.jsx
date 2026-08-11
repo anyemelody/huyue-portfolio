@@ -112,20 +112,18 @@ export default function HighlightWork() {
             </div>
             <div className="v3-flag-side">
               <div>
-                <h3 data-home-reveal="1">Create with AI</h3>
+                <h3 data-home-reveal="1">AI Generate Effects</h3>
                 <p className="v2-flag-line" data-home-reveal="1">Turn a written idea into a runnable TikTok AR effect — ready to customize, publish, and share.</p>
               </div>
               <div className="v3-feature-keywords mono" data-home-reveal="1">
                 <span>AGENTIC AI</span>
                 <span>AR AUTHORING</span>
-                <span>SCENE DECOMPOSITION</span>
-                <span>LLM + MCP</span>
               </div>
               <span className="mono v3-feature-scroll-hint" data-home-reveal="1">CLICK THE IMAGE TO ENTER THE CASE STUDY</span>
             </div>
           </div>
-          <Link to="/work/aige" data-zoom="1" data-feature-media="1" className="v2-well v3-flag-cover" aria-label="Create with AI — case study">
-            <img src="/assets/aige/select_or_type_prompt.png" alt="Create with AI — typing an effect idea" />
+          <Link to="/work/aige" data-zoom="1" data-feature-media="1" className="v2-well v3-flag-cover" aria-label="AI Generate Effects — case study">
+            <img src="/assets/aige/cover_image.gif" alt="AI Generate Effects — TikTok Effect House case study" />
           </Link>
         </div>
       </article>
@@ -142,16 +140,16 @@ export default function HighlightWork() {
             <span>MUTATE / BREED / LOCK</span>
             <span>LIVE MIC · STAGE PROJECTION</span>
           </div>
-          <Link className="v2-case-link mono" to="/work/sound-viz">READ THE CASE STUDY →</Link>
+          <span className="v2-case-link mono">IN PROGRESS</span>
         </div>
-        <Link to="/work/sound-viz" data-zoom="1" className="v2-vfx" ref={grid}
-          onMouseEnter={playAll} onMouseLeave={playOne} aria-label="Sound Visualization — case study">
+        <div data-zoom="1" className="v2-vfx" ref={grid}
+          onMouseEnter={playAll} onMouseLeave={playOne}>
           {['effect-01', 'effect-02', 'effect-03', 'effect-04'].map((n, i) => (
             <div className="v2-well" key={n}>
               <video src={`/assets/sound-viz/${n}.mp4`} autoPlay={i === 0} loop muted playsInline />
             </div>
           ))}
-        </Link>
+        </div>
       </article>}
 
       <div className="v3-selected-head" data-unveil="heading">
