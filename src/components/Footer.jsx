@@ -1,4 +1,21 @@
 import { useEffect, useRef } from 'react'
+import { FaGithub, FaInstagram, FaLinkedinIn, FaVimeoV, FaYoutube } from 'react-icons/fa6'
+
+const socialLinks = [
+  { label: 'GitHub', href: 'https://github.com/anyemelody', Icon: FaGithub },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/yue-melody-hu-60a84295/',
+    Icon: FaLinkedinIn,
+  },
+  {
+    label: 'YouTube',
+    href: 'https://www.youtube.com/watch?v=iMw3da1VIuo&list=PL68yBH9mbDAyLis85tYUav0YoqEYoR6rJ',
+    Icon: FaYoutube,
+  },
+  { label: 'Vimeo', href: 'https://vimeo.com/user44110761', Icon: FaVimeoV },
+  { label: 'Instagram', href: 'https://www.instagram.com/anyemelody/', Icon: FaInstagram },
+]
 
 export default function Footer() {
   const footer = useRef(null)
@@ -20,18 +37,20 @@ export default function Footer() {
       <div className="v2-footer-content">
         <div className="v2-foot-top">
           <div>
-            <div className="v2-foot-tag mono">SAY HELLO</div>
+            <div className="v2-foot-tag mono"><span aria-hidden="true" />OPEN TO NEW OPPORTUNITIES</div>
+            <p className="v2-foot-invitation">Tell me what you’re building —</p>
             <a className="v2-foot-mail" href="mailto:anyemelody@gmail.com">anyemelody@gmail.com</a>
+            <a className="v2-foot-resume mono" href="/Yue_Hu_Resume_New.pdf" target="_blank" rel="noreferrer">VIEW RÉSUMÉ ↗</a>
           </div>
-          <div className="v2-foot-links mono">
-            <a href="https://github.com/anyemelody" target="_blank" rel="noreferrer">GITHUB</a>
-            <a href="https://www.linkedin.com/in/yuehu-melody" target="_blank" rel="noreferrer">LINKEDIN</a>
-            <a href="/Yue_Hu_Resume_New.pdf" target="_blank" rel="noreferrer">RÉSUMÉ</a>
+          <div className="v2-foot-actions">
+            <nav className="v2-foot-socials" aria-label="Social links">
+              {socialLinks.map(({ label, href, Icon }) => (
+                <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} title={label}>
+                  <Icon aria-hidden="true" />
+                </a>
+              ))}
+            </nav>
           </div>
-        </div>
-        <div className="v2-foot-meta mono">
-          <span>YUE HU</span>
-          <span>ENGINEER / CREATOR / ARTIST — SAME OBJECT</span>
         </div>
       </div>
     </footer>

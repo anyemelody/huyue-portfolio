@@ -15,9 +15,11 @@ export default function Nav() {
     <header className="v2-nav">
       <Link to="/" className="v2-brand"><span className="zap">Y</span>ue Hu</Link>
       <nav className="v2-nav-links mono">
+        <Link to="/">ABOUT</Link>
         <a href="/#work">WORK</a>
         <a href="/#art">ART</a>
-        <a href="/#contact">ABOUT &amp; CONTACT</a>
+        <a href="/#contact">CONTACT</a>
+        <a href="/Yue_Hu_Resume_New.pdf" target="_blank" rel="noreferrer" className="v2-nav-cta">RÉSUMÉ</a>
         <button
           type="button"
           className="v2-theme"
@@ -26,7 +28,6 @@ export default function Nav() {
         >
           {theme === 'dark' ? '☀' : '☾'}
         </button>
-        <a href="/Yue_Hu_Resume_New.pdf" target="_blank" rel="noreferrer" className="v2-nav-cta">RÉSUMÉ</a>
       </nav>
     </header>
   )
