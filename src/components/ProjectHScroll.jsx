@@ -67,14 +67,15 @@ export default function ProjectHScroll({ deck }) {
               if (section.type === 'media-row') return <section className={`ph-panel ph-gallery ${section.className || ''}`} key={`media-${index}`}>
                 {section.media.map((item, mediaIndex) => {
                   const node = typeof item === 'string' ? { src: item, ratio: '16 / 9' } : item
-                  return <figure key={node.src} className={mediaIndex % 2 ? 'is-low' : ''} style={{ aspectRatio: node.ratio }}><Media src={node.src} alt={`${deck.title} visual ${mediaIndex + 1}`} /></figure>
+                  return <figure key={node.src} className={`${mediaIndex % 2 ? 'is-low' : ''} ${node.className || ''}`.trim()} style={{ aspectRatio: node.ratio }}><Media src={node.src} alt={`${deck.title} visual ${mediaIndex + 1}`} /></figure>
                 })}
               </section>
-              return <section className="ph-panel ph-section" key={`${section.title}-${index}`}>
+              return <section className={`ph-panel ph-section ${section.wide ? 'ph-section-wide' : ''}`} key={`${section.title}-${index}`}>
                 <div className="ph-section-copy"><span className="ph-kicker mono">{kicker}</span><h2>{section.title}</h2><p>{section.body}</p></div>
+                {section.outcomes?.length > 0 && <ol className="ph-section-outcomes">{section.outcomes.map((outcome) => <li key={outcome.metric}><strong>{outcome.metric}</strong><span>{outcome.text}</span></li>)}</ol>}
                 {section.media?.length > 0 && <div className="ph-section-media">{section.media.map((item) => {
                   const node = typeof item === 'string' ? { src: item } : item
-                  return <figure key={node.src} style={node.ratio ? { aspectRatio: node.ratio } : undefined}><Media src={node.src} alt={`${deck.title} ${section.title}`} /></figure>
+                  return <figure key={node.src} className={node.className || ''} style={node.ratio ? { aspectRatio: node.ratio } : undefined}><Media src={node.src} alt={`${deck.title} ${section.title}`} /></figure>
                 })}</div>}
               </section>
             })}

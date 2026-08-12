@@ -22,7 +22,7 @@ export const eras = [
       { name: 'Sound Emotion', meta: 'creative coding · live ↗', hue: 260, external: true, href: 'https://anyemelody.github.io/SoundEmotion/', img: '/assets/sound-emotion/7514a4_20a46a0b0e694fee90e7e2b814b01a31.png' },
       {
         slug: 'palace-museum', name: 'Palace Museum', meta: 'interactive installation · Beijing 2019', hue: 30,
-        img: '/assets/palace-museum/7514a4_02589036a71d42088ffd829aa1601498.gif',
+        img: '/assets/era/palace_museum.gif',
         depth: 'light', keys: ['palace-museum'],
         detail: {
           year: 'Jan 2019', location: 'Beijing', medium: 'Interactive Installation · Digital Experience', client: 'OUTPUT',

@@ -6,7 +6,7 @@ const SELECTED_PROJECTS = [
   { slug: 'hershey-pop-kisses', title: 'Hershey Pop Kiss Studio', meta: '2017 · HAVAS · DAYDREAM VR INSTALLATION', image: '/assets/era/hershey.png' },
   { slug: 'ibm-watson', title: 'IBM Watson Holobot', meta: '2018 · HAVAS · AR STORYTELLING', image: '/assets/era/ibm-watson.png' },
   { slug: 'vuse-unboxing-ar', title: 'VUSE Alto Unboxing', meta: '2018 · HAVAS · MOBILE AR', image: '/assets/era/vuse.png' },
-  { slug: 'palace-museum', title: 'The Palace Museum Interactive Installation', meta: '2019 · BEIJING PALACE MUSEUM · INTERACTIVE INSTALLATION', image: '/assets/palace-museum/7514a4_02589036a71d42088ffd829aa1601498.gif' },
+  { slug: 'palace-museum', title: 'The Palace Museum Interactive Installation', meta: '2019 · BEIJING PALACE MUSEUM · INTERACTIVE INSTALLATION', image: '/assets/era/palace_museum.gif' },
   { slug: 'santander', title: "Santander — In Someone Else's Shoes", meta: '2018 · WEBBY 2019 · VOLUMETRIC AR', image: '/assets/era/santander.jpg' },
 ]
 

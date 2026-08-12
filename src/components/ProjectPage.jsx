@@ -109,25 +109,23 @@ function makeTikTokDeck(project) {
     media: [],
     sections: [
       {
-        title: 'Project Objectives', kicker: '02 / PROJECT OBJECTIVES',
-        body: 'Effect House expands what is possible with effects by opening Community Effects to creators, designers, and developers around the world — inviting them to imagine new frontiers for TikTok’s effects universe.',
-      },
-      {
-        title: 'Template Production', kicker: '03 / TEMPLATE PRODUCTION',
-        body: 'I led the Effect House Template Team to inspire community creators with timely effects and fresh ideas, while showcasing new product features through inventive applications. Together, the team delivered 20–25 high-quality templates per quarter, more than 120 in total, and reached a 40% effect-conversion rate.',
+        title: 'Template Production', kicker: '02 / TEMPLATE PRODUCTION',
+        wide: true,
+        body: 'I led the Effect House Template Team to inspire community creators with timely effects and fresh ideas, while showcasing new product features through inventive applications.',
+        outcomes: [
+          { metric: '20–25 / QUARTER', text: 'Delivered high-quality templates every quarter — more than 120 in total — expanding the platform’s creative ecosystem.' },
+          { metric: '40% CONVERSION', text: 'Nearly half of TikTok effects were generated from our templates, demonstrating their widespread adoption and product impact.' },
+          { metric: '50+ · 400K+ · 64K', text: 'Led community education through 50+ tutorials and regular YouTube Live sessions; scaled the Discord community to 400K+ members and YouTube to 64K subscribers.' },
+        ],
       },
       { type: 'media-row', media: templateShowcase },
       {
-        title: 'Graph Production', kicker: '04 / GRAPH PRODUCTION',
+        title: 'Graph Production', kicker: '03 / GRAPH PRODUCTION',
         body: 'Graph is a node-based coding system that lets creators build visual and interactive effects without text-based code. Beyond foundational nodes, I designed Material Graph nodes for screen art: transitions for animating properties, 2D SDF shape generation, and packaged visual effects.',
         media: [fromAsset('node_design_example3.gif')],
       },
-      {
-        title: 'Screen Art Node Families', kicker: '05 / MATERIAL GRAPH NODE',
-        body: 'The Material Graph system groups screen effects into three practical families: Transition, 2D SDF, and Effect.',
-      },
       { type: 'media-row', media: categories },
-      { title: 'Material Graph Showcase', kicker: '06 / MATERIAL GRAPH SHOWCASE', body: '', media: [materialShowcase[0].src] },
+      { title: 'Material Graph Showcase', kicker: '04 / MATERIAL GRAPH SHOWCASE', body: '', media: [materialShowcase[0].src] },
       { type: 'media-row', media: materialShowcase.slice(1) },
     ],
     previous: { slug: previousSlug, title: bySlug[previousSlug]?.name || 'All projects', meta: bySlug[previousSlug]?.era || 'PORTFOLIO' },
@@ -206,8 +204,9 @@ function makeHersheyDeck(project) {
       {
         title: 'Aesthetic Design & Scene Building', kicker: '08 / FIVE WORLDS',
         body: 'Each world pairs a distinct emotional character with a playful material language, giving visitors a different place to source patterns and inspiration for their Kiss.',
+        media: [sceneFilms[0]],
       },
-      { type: 'media-row', media: sceneFilms },
+      { type: 'media-row', media: sceneFilms.slice(1) },
     ],
     previous: { slug: previousSlug, title: bySlug[previousSlug]?.name || 'All projects', meta: bySlug[previousSlug]?.era || 'PORTFOLIO' },
     next: { slug: nextSlug, title: bySlug[nextSlug]?.name || 'All projects', meta: bySlug[nextSlug]?.era || 'PORTFOLIO' },
@@ -230,6 +229,11 @@ function makeVuseDeck(project) {
     '7514a4_dfe27841e20a44889471202f771b5275.png', '7514a4_c573f3952ee648d8a6b9416236e4ac13.png', '7514a4_b0a1106543ce4cf49fab3e3d8f4e5f47.png',
     '7514a4_a534313a1fcd4b57993be4d93422db00.png', '7514a4_c5d4bc7cd19f4dcbbdfcc10716cd8f6e.png',
   ].map((file) => ({ src: `/assets/vuse-unboxing-ar/${file}`, ratio: '16 / 9' }))
+  const fromAsset = (file) => `/assets/vuse-unboxing-ar/${file}`
+  const storyboards = [
+    'storyboard_1.png', 'storyboard_2.png', 'storyboard_3.1.png', 'storyboard_3.2.png',
+    'storyboard_3.3.png', 'storyboard_3.4.png', 'storyboard_3.5.png', 'storyboard_4.png',
+  ].map((file) => ({ src: fromAsset(file), className: 'vuse-storyboard-frame' }))
   const section = (title, kicker, body, media = []) => ({ title, kicker, body, media })
   return {
     slug: project.slug, title: project.name, hero: project.cover, video: null, embed: detail.videoEmbed || null,
@@ -240,15 +244,9 @@ function makeVuseDeck(project) {
     facts: [['CLIENT', 'VUSE / Havas Worldwide'], ['PLATFORM', 'Unity · AR Mobile'], ['TIMELINE', 'AUG 2018']],
     link: detail.link, media: [],
     sections: [
-      section('Product in 360°', '02 / IDEATION', 'The experience uses a mobile AR interface to reveal a sleek product and its features in a navigable 360° view — translating product benefits into a layered spatial story.', [files[0]]),
-      { type: 'media-row', media: files.slice(1, 9) },
-      section('Experience Architecture', '03 / USER EXPERIENCE', 'The end-to-end flow informed both the interaction design and the Unity application structure. Touch moves the product through InTheBox, Rest, SeeInAction, Heater, FlavorPod, MouthPiece, Battery, and SmartConnect states.', [files[9]]),
-      section('Stateful Interaction', '04 / APPLICATION SYSTEM', 'A TapEventController selects the next view state from the user’s UI action. A singleton ViewStateController then resets position, plays animations, updates navigation, activates particles, and enables rotation gestures.', [files[10], files[11]]),
-      section('Feelm Heater', '05 / COMPONENT VISUALS', 'For the Alto’s heating technology, I translated the original 2D storyboard into a live AR particle system that visualizes the activated coil and its performance benefits.', files.slice(12, 15)),
-      section('Flavor Pod', '06 / COMPONENT VISUALS', 'Four distinctive particle systems and vapor effects make each selectable flavor legible as a different product experience.', files.slice(15, 18)),
-      section('MouthPiece', '07 / COMPONENT VISUALS', 'Three animated airflow paths — two along the ergonomic edges and one through the device — illustrate an effortless draw.', files.slice(18, 21)),
-      section('Smart Battery', '08 / COMPONENT VISUALS', 'A looping visual system communicates consistent, long-lasting power rather than a static product specification.', files.slice(21, 23)),
-      section('Quick Connect', '09 / COMPONENT VISUALS', 'Particle fields and motion design turn the magnetic click-and-go connection into a visible, intuitive interaction.', files.slice(23, 26)),
+      section('Experience Architecture', '02 / EXPERIENCE ARCHITECTURE', 'The end-to-end flow informed both the interaction design and the Unity application structure. Touch moves the product through InTheBox, Rest, SeeInAction, Heater, FlavorPod, MouthPiece, Battery, and SmartConnect states.', [{ src: fromAsset('ux_diagram.png'), className: 'vuse-storyboard-frame' }]),
+      section('Experience Storyboarding', '03 / EXPERIENCE STORYBOARD', 'The experience uses a mobile AR interface to reveal a sleek product and its features in a navigable 360° view — translating product benefits into a layered spatial story.', [storyboards[0]]),
+      { type: 'media-row', media: storyboards.slice(1) },
     ],
     previous: { slug: previousSlug, title: bySlug[previousSlug]?.name || 'All projects', meta: bySlug[previousSlug]?.era || 'PORTFOLIO' },
     next: { slug: nextSlug, title: bySlug[nextSlug]?.name || 'All projects', meta: bySlug[nextSlug]?.era || 'PORTFOLIO' },
@@ -260,7 +258,13 @@ function makeIbmDeck(project) {
   const projectIndex = HOME_CASE_ORDER.indexOf(project.slug)
   const previousSlug = HOME_CASE_ORDER[(projectIndex - 1 + HOME_CASE_ORDER.length) % HOME_CASE_ORDER.length]
   const nextSlug = HOME_CASE_ORDER[(projectIndex + 1) % HOME_CASE_ORDER.length]
-  const section = (title, kicker, body) => ({ title, kicker, body })
+  const fromAsset = (file) => `/assets/ibm-watson-holobot/${file}`
+  const storyboardIntro = { src: fromAsset('storyboard_intro_1.png'), className: 'ibm-ideation-intro' }
+  const storyboards = [
+    'storyboard_floor1.png', 'storyboard_floor2.png', 'storyboard_floor3.png',
+    'storyboard_floor4.png', 'storyboard_outro.png',
+  ].map(fromAsset)
+  const section = (title, kicker, body, media = []) => ({ title, kicker, body, media })
   return {
     slug: project.slug, title: project.name, hero: project.cover, video: null, embed: detail.videoEmbed || null,
     kicker: 'SELECTED SHIPPED WORK / CASE STUDY',
@@ -270,14 +274,14 @@ function makeIbmDeck(project) {
     facts: [['CLIENT', 'IBM / Havas Worldwide'], ['PLATFORM', 'Unity · AR Mobile'], ['EXHIBITION', 'IBM THINK 2018'], ['TIMELINE', 'MAR 2018']],
     link: detail.link, media: [],
     sections: [
-      section('Call Center of the Future', '02 / PROJECT OBJECTIVE', 'The experience educates visitors on how Watson can add value to call centers through faster responses, streamlined processes, and artificial-intelligence systems that support better service.'),
-      section('A Building as a Story', '03 / IDEATION', 'On iOS phones and tablets, users explore a virtual 3D call-center building. Each floor contains interactive objects, animation, and video that explain a specific Watson capability.'),
-      section('Particle System Language', '04 / PROTOTYPE & DEVELOPMENT', 'As lead creative technologist, I designed the visuals, motion, interaction, and particle systems. Spheres represent customer requests; their materials evolved through lighting, glow, shadow, reflection, and transparency tests before a high-performance 2D sprite solution was selected.'),
-      section('Gaze Interaction', '05 / GUIDANCE', 'A gaze interaction system highlights useful information according to the visitor’s position. In the introduction, it uses text fades and particle movement to guide attention through the scene.'),
-      section('Floor 1 — Smart Chatbots', '06 / CALL CENTER FLOORS', 'Two particle systems contrast labor-intensive service with Watson’s chatbot solution, which can respond consistently across messaging, social, and telephone channels.'),
-      section('Floors 2 & 3 — From Noise to Order', '07 / CALL CENTER FLOORS', 'Randomly placed spheres progressively form an ordered arrangement, illustrating how Watson searches knowledge sources and answers incoming questions at scale.'),
-      section('Floor 4 — Deeper Insight', '08 / CALL CENTER FLOORS', 'A polar-coordinate particle system forms dynamic circles to show how advanced analytics reveal customer behavior, preferences, and expectations.'),
-      section('Grounded AR Journey', '09 / USER FLOW', 'Vuforia ground recognition anchors the building to a flat surface. A tap begins the introduction; particles rise, lead attention back to the base, and reveal the building floor by floor as visitors gaze and tap onward.'),
+      section('Call Center of the Future', '02 / PROJECT OBJECTIVE', 'The experience educates visitors on how Watson can add value to call centers through faster responses, streamlined processes, and artificial-intelligence systems that support better service. Vuforia ground recognition anchors the building to a flat surface; a tap begins the introduction, then particles guide attention as visitors reveal the building floor by floor.', [fromAsset('Event_Shot_1.jpg')]),
+      section('A Building as a Story', '03 / IDEATION', 'On iOS phones and tablets, users explore a virtual 3D call-center building. Each floor contains interactive objects, animation, and video that explain a specific Watson capability.', [storyboardIntro]),
+      { type: 'media-row', media: storyboards },
+      section('Particle System Language', '04 / PROTOTYPE & DEVELOPMENT', 'As lead creative technologist, I designed the visuals, motion, interaction, and particle systems. Spheres represent customer requests; their materials evolved through lighting, glow, shadow, reflection, and transparency tests before a high-performance 2D sprite solution was selected.', [fromAsset('particle_design.png'), fromAsset('particle_final_effect.gif')]),
+      section('Gaze Interaction', '05 / GUIDANCE', 'A gaze interaction system highlights useful information according to the visitor’s position. In the introduction, it uses text fades and particle movement to guide attention through the scene.', [fromAsset('Particle_Gaze_Interaction.gif')]),
+      section('Floor 1 — Smart Chatbots', '06 / CALL CENTER FLOORS', 'Two particle systems contrast labor-intensive service with Watson’s chatbot solution, which can respond consistently across messaging, social, and telephone channels.', [fromAsset('floor1_particle_math_diagram.jpg'), fromAsset('floor1_particle_final_effect.gif')]),
+      section('Floors 2 & 3 — From Noise to Order', '07 / CALL CENTER FLOORS', 'Randomly placed spheres progressively form an ordered arrangement, illustrating how Watson searches knowledge sources and answers incoming questions at scale.', [fromAsset('floor2&3_final_effect.gif')]),
+      section('Floor 4 — Deeper Insight', '08 / CALL CENTER FLOORS', 'A polar-coordinate particle system forms dynamic circles to show how advanced analytics reveal customer behavior, preferences, and expectations.', [fromAsset('floor4_particle_math_diagram.jpg'), fromAsset('floor4_final_effectpng.png')]),
     ],
     previous: { slug: previousSlug, title: bySlug[previousSlug]?.name || 'All projects', meta: bySlug[previousSlug]?.era || 'PORTFOLIO' },
     next: { slug: nextSlug, title: bySlug[nextSlug]?.name || 'All projects', meta: bySlug[nextSlug]?.era || 'PORTFOLIO' },
@@ -290,12 +294,12 @@ function makePalaceDeck(project) {
   const previousSlug = HOME_CASE_ORDER[(projectIndex - 1 + HOME_CASE_ORDER.length) % HOME_CASE_ORDER.length]
   const nextSlug = HOME_CASE_ORDER[(projectIndex + 1) % HOME_CASE_ORDER.length]
   const media = [
-    '7514a4_dabdafd4ec804357be0f3ee131796422.png', '7514a4_b2029332ec7e4a6182adc69226766ea8.png', '7514a4_21410875cd254b428379de39eea09603.png',
-    '7514a4_edbae050251242c4801fe4c4047dafd5.png', '7514a4_37522b3de1e742419cb8508de22763e3.png',
-    '7514a4_af170f4761944628942fd3bb4637176a.gif', '7514a4_3b43f94dc4824aeb9759d706a902c357.gif', '7514a4_24aa5567fb7a45d3b225b933a6c0ba82.gif',
+    'Eternal_Blossom.png', 'catching_new_year_blessing.png', 'Frosty_Wonderland.png',
+    'eternal_blossom_inspiration.png', '2d_rigging_dev.png', 'Eternal_Blossom_screen_render.mov',
+    'interaction_detail_1.gif', 'interaction_detail_2.gif', 'interaction_detail_3.gif',
   ].map((file) => ({ src: `/assets/palace-museum/${file}`, ratio: '16 / 9' }))
   return {
-    slug: project.slug, title: project.name, hero: project.cover, video: null, embed: detail.videoEmbed || null,
+    slug: project.slug, title: project.name, hero: project.cover, video: null, embed: 'https://player.vimeo.com/video/328342532',
     kicker: 'SELECTED SHIPPED WORK / CASE STUDY',
     lead: 'A digital installation at the Palace Museum in Beijing, created to celebrate the 2019 Chinese Lunar New Year.',
     body: 'The exhibition brought three interactive themes to life: Catching New Year Blessing, Eternal Blossom, and Frosty Wonderland. I led interaction design, animation design, and application development for Eternal Blossom.',
@@ -305,8 +309,8 @@ function makePalaceDeck(project) {
     sections: [
       { title: 'Three New-Year Worlds', kicker: '02 / EXHIBITION', body: 'The installation celebrated the Lunar New Year across three visual worlds — Catching New Year Blessing, Eternal Blossom, and Frosty Wonderland — each inviting visitors to activate the scene through their own movement.', media: media.slice(0, 3) },
       { title: 'Eternal Blossom', kicker: '03 / INSPIRATION', body: 'Inspired by Qing Dynasty paintings, Eternal Blossom turns symbols of spring and joy — persimmons, pomegranates, narcissus, peonies, and butterflies — into a living composition. A wave of the arm makes flowers bloom, fruit roll, and butterflies flutter.', media: [media[3]] },
-      { title: '2D Rigging & Interaction', kicker: '04 / DEVELOPMENT', body: 'I rigged the 2D visual elements with bones and inverse kinematics so they respond naturally to force. Touching or dragging the large screen applies force to the painted elements and triggers their dynamic movement.', media: [media[4]] },
-      { title: 'On-Site Interaction', kicker: '05 / INSTALLATION', body: 'After the scene and interaction were set, the installation mapped the physical exhibition space through Unity and a Laser RangeFinder, enabling visitors to wave and touch to activate the work at full scale.', media: media.slice(5) },
+      { title: '2D Rigging & Interaction', kicker: '04 / DEVELOPMENT', body: 'I rigged the 2D visual elements with bones and inverse kinematics so they respond naturally to force. Touching or dragging the large screen applies force to the painted elements and triggers their dynamic movement.', media: media.slice(4, 6) },
+      { title: 'On-Site Interaction', kicker: '05 / INSTALLATION', body: 'After the scene and interaction were set, the installation mapped the physical exhibition space through Unity and a Laser RangeFinder, enabling visitors to wave and touch to activate the work at full scale.', media: media.slice(6) },
     ],
     previous: { slug: previousSlug, title: bySlug[previousSlug]?.name || 'All projects', meta: bySlug[previousSlug]?.era || 'PORTFOLIO' },
     next: { slug: nextSlug, title: bySlug[nextSlug]?.name || 'All projects', meta: bySlug[nextSlug]?.era || 'PORTFOLIO' },
@@ -327,9 +331,14 @@ function makeSantanderDeck(project) {
     facts: [['CLIENT', 'Santander / Heading Home'], ['PLATFORM', 'Unity · ARKit · ARCore'], ['RECOGNITION', '2019 WEBBY AWARD'], ['TIMELINE', 'OCT 2018']],
     link: detail.link, media: [],
     sections: [
-      { title: 'Walk in Someone Else’s Shoes', kicker: '02 / SOCIAL IMPACT', body: 'The campaign connected physical movement to a concrete social outcome: every mile walked generated a $10 donation for Heading Home, a Boston nonprofit.' },
-      { title: 'Empathy Through AR', kicker: '03 / IMMERSIVE STORYTELLING', body: 'The mobile app combines augmented reality and volumetric video to make a first-person encounter feel immediate — using immersion to show that empathy is the cornerstone of respect.' },
-      { title: 'Webby Recognition', kicker: '04 / OUTCOME', body: 'In Someone Else’s Shoes received the 2019 Webby Award for Augmented Reality.' },
+      {
+        title: 'Walk in Someone Else’s Shoes', kicker: '02 / SOCIAL IMPACT', wide: true,
+        body: 'The campaign connected physical movement to a concrete social outcome. The mobile app combines augmented reality and volumetric video to make a first-person encounter feel immediate — using immersion to show that empathy is the cornerstone of respect.',
+        outcomes: [
+          { metric: '$10 / MILE', text: 'For every mile walked “in someone else’s shoes,” Santander donated $10 to Heading Home, a Boston nonprofit.' },
+          { metric: '2019 WEBBY', text: 'In Someone Else’s Shoes received the Webby Award for Augmented Reality.' },
+        ],
+      },
     ],
     previous: { slug: previousSlug, title: bySlug[previousSlug]?.name || 'All projects', meta: bySlug[previousSlug]?.era || 'PORTFOLIO' },
     next: { slug: nextSlug, title: bySlug[nextSlug]?.name || 'All projects', meta: bySlug[nextSlug]?.era || 'PORTFOLIO' },

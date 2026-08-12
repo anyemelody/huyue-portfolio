@@ -5,3 +5,5 @@ public/assets/hershey-pop-kisses/scene3_FloatingCuriocity.mov filter=lfs diff=lf
 public/assets/hershey-pop-kisses/scene4_HappyHallows.mov filter=lfs diff=lfs merge=lfs -text
 public/assets/hershey-pop-kisses/scene5_SlidingDelight.mov filter=lfs diff=lfs merge=lfs -text
 public/assets/dreamy-galaxy/Galaxy[[:space:]](1).mp4 filter=lfs diff=lfs merge=lfs -text
+public/assets/dreamy-galaxy/Galaxy.mp4 filter=lfs diff=lfs merge=lfs -text
+public/assets/dreamy-lotus/luotusImproveShader.mp4 filter=lfs diff=lfs merge=lfs -text

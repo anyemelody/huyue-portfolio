@@ -1,10 +1,26 @@
 /* Keep the project typography in the portfolio's green display family. */
 .ph-overview h1,
-.ph-section-copy h2 { color: #9db08f; }
+.ph-section-copy h2 { color: var(--v2-title); }
+
+.ph-section-wide { gap: clamp(44px, 6vw, 112px); width: min(1240px, 100vw); }
+.ph-section-wide .ph-section-copy { width: min(400px, 31vw); }
+.ph-section-outcomes { display: grid; gap: 0; width: min(690px, 54vw); margin: 0; padding: 0; list-style: none; border-top: 1px solid color-mix(in srgb, var(--v2-title) 38%, transparent); }
+.ph-section-outcomes li { display: grid; grid-template-columns: minmax(128px, .82fr) minmax(270px, 1.7fr); gap: clamp(18px, 3vw, 46px); align-items: baseline; padding: 20px 0; border-bottom: 1px solid color-mix(in srgb, var(--v2-title) 22%, transparent); }
+.ph-section-outcomes strong { color: var(--v2-title); font-size: clamp(20px, 2.35vw, 34px); font-weight: 700; letter-spacing: -.045em; line-height: 1; }
+.ph-section-outcomes span { color: var(--v2-soft); font-size: clamp(14px, 1.15vw, 17px); line-height: 1.45; }
+.ph-section-media figure.ibm-ideation-intro { height: 48dvh; margin-left: clamp(-44px, -2vw, -20px); }
+.ph-gallery figure.vuse-storyboard-frame,
+.ph-section-media figure.vuse-storyboard-frame { box-sizing: border-box; padding: 12px; background: #f4f1ea; }
 
 /* Match the scale of media-only panels while keeping the copy on the left. */
 .ph-section-media figure { height: 62dvh; }
 
 @media (max-width: 760px) {
   .ph-section-media figure { height: 44svh; }
+  .ph-section-wide .ph-section-copy, .ph-section-outcomes { width: auto; }
+  .ph-section-outcomes { margin-top: 34px; }
+  .ph-section-outcomes li { grid-template-columns: 1fr; gap: 9px; }
+  .ph-section-media figure.ibm-ideation-intro { height: 44svh; margin-left: 0; }
+  .ph-gallery figure.vuse-storyboard-frame,
+  .ph-section-media figure.vuse-storyboard-frame { padding: 8px; }
 }
