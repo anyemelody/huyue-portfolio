@@ -87,6 +87,7 @@ export default function ProjectSlides({ deck }) {
         </div>
       </div>
       <div className="ps-hud"><Link to="/" className="ps-brand"><span>Y</span>ue Hu</Link><Link to="/#work" className="mono">← ALL PROJECTS</Link></div>
+      <Link className="ps-gallery-return mono" to="/#art">← ART GALLERY</Link>
       <div className="ps-progress"><div ref={progress} /></div>
     </main>
   )

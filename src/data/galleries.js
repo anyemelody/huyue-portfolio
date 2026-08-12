@@ -109,18 +109,18 @@ export const galleries = {
     "/assets/palace-museum/7514a4_3b43f94dc4824aeb9759d706a902c357.gif",
     "/assets/palace-museum/7514a4_24aa5567fb7a45d3b225b933a6c0ba82.gif"
   ],
-  "dreamy-lotus": [
-    "/assets/dreamy-lotus/7514a4_464b8b87cd104c0bba798ba58bca31b3.png",
-    "/assets/dreamy-lotus/7514a4_a8874670d1174739abae8b5a7d010736.png",
-    "/assets/dreamy-lotus/7514a4_44834512024745f98611a9c475fad355.png",
-    "/assets/dreamy-lotus/7514a4_59dda5c531174c1fac9680923ccb1c04.png",
-    "/assets/dreamy-lotus/7514a4_ae0eacf322424c4e9b97449deade005f.png",
-    "/assets/dreamy-lotus/7514a4_0e20e31bf11f4a51a1cb099e5e78c91e.png"
+  "lotus-love": [
+    "/assets/lotus-love/7514a4_464b8b87cd104c0bba798ba58bca31b3.png",
+    "/assets/lotus-love/7514a4_a8874670d1174739abae8b5a7d010736.png",
+    "/assets/lotus-love/7514a4_44834512024745f98611a9c475fad355.png",
+    "/assets/lotus-love/7514a4_59dda5c531174c1fac9680923ccb1c04.png",
+    "/assets/lotus-love/7514a4_ae0eacf322424c4e9b97449deade005f.png",
+    "/assets/lotus-love/7514a4_0e20e31bf11f4a51a1cb099e5e78c91e.png"
   ],
   "dreamy-galaxy": [
     "/assets/dreamy-galaxy/7514a4_210f3b7e0d51493d8896123e9dab718a.png"
   ],
-  "animal-love": [],
+  "animal-party": [],
   "santander": [],
   "social-filter-lab": [
     "/assets/social-filter-lab/7514a4_b45519da6c7f4efbba9796cb4b89e444.gif",

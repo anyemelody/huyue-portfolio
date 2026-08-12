@@ -436,6 +436,7 @@ function TikTokEffectHouseCase({ p }) {
         <Link to="/#work">← back to selected work</Link>
         <span>CASE STUDY / 2021 — PRESENT</span>
       </div>
+      <Link className="project-gallery-return mono" to="/#art">← ART GALLERY</Link>
 
       <section className="tiktok-case-hero">
         <div className="tiktok-case-hero-copy">
@@ -533,6 +534,7 @@ export default function ProjectPage() {
 
   return (
     <main className="project-page">
+      <Link className="project-gallery-return mono" to="/#art">← ART GALLERY</Link>
       <div className="wrap project-wrap">
         <div className="proj-topline mono">
           <Link className="proj-back" to="/#work">← back to selected work</Link>

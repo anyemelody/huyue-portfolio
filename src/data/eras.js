@@ -67,8 +67,8 @@ export const eras = [
       },
       {
         slug: 'lotus-love', name: 'Lotus Love', meta: 'Unity · VFX · shader graph', hue: 300, video: true,
-        img: '/assets/dreamy-lotus/7514a4_85b62416eb134f95b8b892cfed49ed1c.gif',
-        depth: 'light', keys: ['dreamy-lotus'],
+        img: '/assets/lotus-love/cover_image.gif',
+        depth: 'light', keys: ['lotus-love'],
         detail: {
           year: 'Sep 2021', location: 'New York', medium: 'Unity · VFX · Shader Graph', client: 'Individual Work',
           tools: ['Unity 3D', 'VFX Graph', 'Shader Graph'],
@@ -87,8 +87,8 @@ export const eras = [
       },
       {
         slug: 'animal-party', name: 'Animal Party', meta: 'Unity · SDF VFX', hue: 90, video: true,
-        img: '/assets/animal-love/7514a4_543f6619262a4464b7bb65cecb762ea0.gif',
-        depth: 'light', keys: ['animal-love'],
+        img: '/assets/animal-party/cover.gif',
+        depth: 'light', keys: ['animal-party'],
         detail: {
           year: 'Oct 2021', location: 'New York', medium: 'Unity', client: 'Individual Work',
           tools: ['Unity 3D', 'VFX Graph'],

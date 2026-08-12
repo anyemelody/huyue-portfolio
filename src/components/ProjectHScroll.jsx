@@ -86,6 +86,7 @@ export default function ProjectHScroll({ deck }) {
             </section>
           </div>
           <div className="ph-hud"><Link to="/" className="ph-brand"><span>Y</span>ue Hu</Link><Link to="/#work" className="mono">← ALL PROJECTS</Link></div>
+          <Link className="ph-gallery-return mono" to="/#art">← ART GALLERY</Link>
           <div className="ph-progress"><div ref={progress} /></div>
         </div>
       </div>

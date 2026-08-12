@@ -7,3 +7,4 @@ public/assets/hershey-pop-kisses/scene5_SlidingDelight.mov filter=lfs diff=lfs m
 public/assets/dreamy-galaxy/Galaxy[[:space:]](1).mp4 filter=lfs diff=lfs merge=lfs -text
 public/assets/dreamy-galaxy/Galaxy.mp4 filter=lfs diff=lfs merge=lfs -text
 public/assets/dreamy-lotus/luotusImproveShader.mp4 filter=lfs diff=lfs merge=lfs -text
+public/assets/lotus-love/luotusImproveShader.mp4 filter=lfs diff=lfs merge=lfs -text

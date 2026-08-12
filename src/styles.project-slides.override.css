@@ -13,9 +13,11 @@
 .ps-section-media img, .ps-section-media video { display: block; width: 100%; height: clamp(130px, 20vh, 230px); object-fit: cover; }
 .ps-hud { padding: 32px 48px; }
 .ps-hud a { color: #fff; }
+.ps-gallery-return { position: fixed; z-index: 6; right: 48px; bottom: 32px; color: #fff; font-size: 10px; letter-spacing: .18em; text-decoration: none; mix-blend-mode: difference; }
+.ps-gallery-return:hover { color: var(--ps-sage); }
 .ps-brand { font-family: "Optima", "Marcellus Sans", Candara, "Gill Sans", "Palatino Linotype", serif !important; font-size: 28px !important; font-weight: 400; line-height: 1; }
 .ps-brand span { font-family: "Zapfino", "Snell Roundhand", "Apple Chancery", cursive; font-size: .82em; padding-right: .04em; }
-@media (max-width: 760px) { .ps-hud { padding: 26px 24px; } }
+@media (max-width: 760px) { .ps-hud { padding: 26px 24px; } .ps-gallery-return { right: 24px; bottom: 26px; } }
 @media (max-width: 760px) { .ps-section-media { grid-template-columns: 1fr; } .ps-section-media img, .ps-section-media video { height: 30vh; } }
 .ps-project-nav { position: absolute; inset: 0; width: auto; }
 .ps-project-nav-item { display: flex; flex-direction: column; gap: 18px; color: #ede7dd; text-decoration: none; }

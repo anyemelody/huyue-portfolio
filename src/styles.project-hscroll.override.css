@@ -15,7 +15,11 @@
 /* Match the scale of media-only panels while keeping the copy on the left. */
 .ph-section-media figure { height: 62dvh; }
 
+.ph-gallery-return { position: fixed; z-index: 4; right: 48px; bottom: 32px; color: #fff; font-size: 10px; letter-spacing: .18em; text-decoration: none; mix-blend-mode: difference; }
+.ph-gallery-return:hover { color: #9db08f; }
+
 @media (max-width: 760px) {
+  .ph-gallery-return { right: 24px; bottom: 26px; }
   .ph-section-media figure { height: 44svh; }
   .ph-section-wide .ph-section-copy, .ph-section-outcomes { width: auto; }
   .ph-section-outcomes { margin-top: 34px; }
