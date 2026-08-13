@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import SelfIntro from './SelfIntro.jsx'
 import HighlightWork from './HighlightWork.jsx'
 import ArtGallery from './ArtGallery.jsx'
-import Footer from './Footer.jsx'
 
 export default function Home() {
   useEffect(() => {
@@ -36,7 +35,6 @@ export default function Home() {
       <SelfIntro />
       <HighlightWork />
       <ArtGallery />
-      <Footer />
     </>
   )
 }
