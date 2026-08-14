@@ -1,15 +1,40 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
+// Theme follows local time by default: 7:00–19:00 light, otherwise dark.
+// Clicking the toggle overrides it for the current visit only (sessionStorage);
+// the next visit returns to time-based auto switching.
+const timeTheme = () => {
+  const hour = new Date().getHours()
+  return hour >= 7 && hour < 19 ? 'light' : 'dark'
+}
+
 export default function Nav() {
   const [theme, setTheme] = useState(
-    () => document.documentElement.dataset.theme || 'light'
+    () => document.documentElement.dataset.theme || timeTheme()
   )
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
-    try { localStorage.setItem('yh-theme', theme) } catch (e) { /* private mode */ }
   }, [theme])
+
+  // while no manual override, keep following the clock (e.g. page left open past 19:00)
+  useEffect(() => {
+    const tick = setInterval(() => {
+      try {
+        if (sessionStorage.getItem('yh-theme-override')) return
+        const next = timeTheme()
+        setTheme((current) => (current === next ? current : next))
+      } catch (e) { /* private mode */ }
+    }, 60000)
+    return () => clearInterval(tick)
+  }, [])
+
+  const toggle = () => {
+    const next = theme === 'dark' ? 'light' : 'dark'
+    setTheme(next)
+    try { sessionStorage.setItem('yh-theme-override', next) } catch (e) { /* private mode */ }
+  }
 
   return (
     <header className="v2-nav">
@@ -24,7 +49,7 @@ export default function Nav() {
           type="button"
           className="v2-theme"
           aria-label={theme === 'dark' ? 'Switch to light' : 'Switch to dark'}
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          onClick={toggle}
         >
           {theme === 'dark' ? '☀' : '☾'}
         </button>

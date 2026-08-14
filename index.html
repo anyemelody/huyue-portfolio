@@ -2,7 +2,14 @@
 <html lang="en">
   <head>
     <script>
-      try { document.documentElement.dataset.theme = localStorage.getItem('yh-theme') || 'light' } catch (e) {}
+      // Theme: follows local time by default (7:00–19:00 light, otherwise dark).
+      // A manual toggle overrides it for the current visit only (sessionStorage).
+      try {
+        var override = sessionStorage.getItem('yh-theme-override')
+        var hour = new Date().getHours()
+        document.documentElement.dataset.theme = override || (hour >= 7 && hour < 19 ? 'light' : 'dark')
+        localStorage.removeItem('yh-theme') // legacy persisted preference, no longer used
+      } catch (e) { document.documentElement.dataset.theme = 'light' }
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
