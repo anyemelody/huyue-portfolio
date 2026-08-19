@@ -40,7 +40,7 @@ export default function Footer() {
             <div className="v2-foot-tag mono"><span aria-hidden="true" />OPEN TO NEW OPPORTUNITIES</div>
             <p className="v2-foot-invitation">Tell me what you’re building —</p>
             <a className="v2-foot-mail" href="mailto:anyemelody@gmail.com">anyemelody@gmail.com</a>
-            <a className="v2-foot-resume mono" href="/Yue_Hu_Resume_New.pdf" target="_blank" rel="noreferrer">VIEW RÉSUMÉ ↗</a>
+            <a className="v2-foot-resume mono" href="/Yue_Hu_Resume.pdf" target="_blank" rel="noreferrer">VIEW RÉSUMÉ ↗</a>
           </div>
           <div className="v2-foot-actions">
             <nav className="v2-foot-socials" aria-label="Social links">

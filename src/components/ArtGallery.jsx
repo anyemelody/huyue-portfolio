@@ -856,7 +856,7 @@ export default function ArtGallery() {
           <div className="art-outro-tagline">Tell me what you’re building —</div>
         </div>
         <a className="art-outro-email oi" href="mailto:anyemelody@gmail.com">anyemelody@gmail.com</a>
-        <a className="art-outro-resume oi mono" href="/Yue_Hu_Resume_New.pdf" target="_blank" rel="noreferrer">VIEW RÉSUMÉ ↗</a>
+        <a className="art-outro-resume oi mono" href="/Yue_Hu_Resume.pdf" target="_blank" rel="noreferrer">VIEW RÉSUMÉ ↗</a>
         <nav className="art-outro-socials" aria-label="Social links">
           {socialLinks.map(({ label, href, Icon }) => (
             <a key={label} className="oi" href={href} target="_blank" rel="noreferrer" aria-label={label} title={label}>

@@ -44,7 +44,7 @@ export default function Nav() {
         <a href="/#work">WORK</a>
         <a href="/#art">ART</a>
         <a href="/#contact">CONTACT</a>
-        <a href="/Yue_Hu_Resume_New.pdf" target="_blank" rel="noreferrer" className="v2-nav-cta">RÉSUMÉ</a>
+        <a href="/Yue_Hu_Resume.pdf" target="_blank" rel="noreferrer" className="v2-nav-cta">RÉSUMÉ</a>
         <button
           type="button"
           className="v2-theme"
