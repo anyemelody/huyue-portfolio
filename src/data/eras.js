@@ -32,9 +32,14 @@ export const eras = [
         },
       },
       {
-        slug: 'rain-rite', name: 'Rain Rite', meta: 'project · (details TBD)', hue: 330,
+        slug: 'rain-rite', name: 'Rain Rite', meta: 'live performance · CICA, NY · 2025', hue: 330,
+        img: '/assets/rain-rite/cover.png',
         depth: 'light', keys: [],
-        detail: { body: '(Details to be added — send medium, your role, and assets.)' },
+        detail: {
+          year: '2025', medium: 'Live Performance · Creative Technology', client: 'Independent project',
+          role: ['Creative Direction', 'Live Performance'],
+          body: 'Rain Rite is a completed live-performance project exploring music, movement, and real-time visual expression. It was presented at Art in Action, CICA, NY, and featured by Visual Art Journal.',
+        },
       },
     ],
   },

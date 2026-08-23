@@ -14,6 +14,11 @@
 
 /* Match the scale of media-only panels while keeping the copy on the left. */
 .ph-section-media figure { height: 62dvh; }
+.ph-section-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.ph-section-links .ph-link { margin-top: 0; }
+.rain-rite-exhibition .ph-section-media { gap: 14px; }
+.rain-rite-exhibition .ph-section-media figure.rain-rite-portrait-media { width: calc(62dvh * 9 / 16); overflow: hidden; }
+.rain-rite-exhibition .ph-section-media figure.rain-rite-magazine-media img { width: 100%; max-width: none; object-fit: cover; }
 
 .ph-gallery-return { position: fixed; z-index: 4; right: 48px; bottom: 32px; color: #fff; font-size: 10px; letter-spacing: .18em; text-decoration: none; mix-blend-mode: difference; }
 .ph-gallery-return:hover { color: #9db08f; }

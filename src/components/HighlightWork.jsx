@@ -10,22 +10,16 @@ const SELECTED_PROJECTS = [
   { slug: 'santander', title: "Santander — In Someone Else's Shoes", meta: '2018 · WEBBY 2019 · VOLUMETRIC AR', image: '/assets/era/santander.jpg' },
 ]
 
-// Keep this project ready for a later release without showing it on the homepage yet.
-const SHOW_SOUND_VISUALIZATION = false
-
 /**
- * HighlightWork (v3) — giant section title, then two staggered flagships.
+ * HighlightWork (v3) — giant section title, then two staggered highlights.
  * AIGE: cover fills the left half, title + three keyword rows on the right.
- * Sound Viz: nudged right and down (diagonal composition), text left,
- * 2×2 video grid right — one clip at rest, all four on hover.
+ * Rain Rite: nudged right and down (diagonal composition), text left,
+ * and a single live-performance still on the right.
  * Both media blocks zoom gently as they travel up the viewport (Lusion-style)
  * and click through to the case page.
  */
 export default function HighlightWork() {
-  const grid = useRef(null)
   const feature = useRef(null)
-  const playAll = () => grid.current?.querySelectorAll('video').forEach((v) => v.play?.().catch(() => {}))
-  const playOne = () => grid.current?.querySelectorAll('video').forEach((v, i) => { if (i) v.pause?.() })
 
   useEffect(() => {
     let ticking = false
@@ -128,29 +122,24 @@ export default function HighlightWork() {
         </div>
       </article>
 
-      {SHOW_SOUND_VISUALIZATION && <article className="v3-flag-second">
+      <article className="v3-flag-second">
         <div className="v2-flag-body">
-          <div className="mono v2-flag-meta"><span className="hot">02</span><span>2026</span><span>SOLO · IN PROGRESS</span></div>
+          <div className="mono v2-flag-meta"><span className="hot">02</span><span>2025</span><span>INDEPENDENT · CICA, NY</span></div>
           <div>
-            <h3>Sound Visualization</h3>
-            <p className="v2-flag-line">agents propose, humans commit</p>
+            <h3>Rain Rite</h3>
+            <p className="v2-flag-line">live performance in motion</p>
           </div>
           <div className="v2-chips mono">
-            <span>ONE PROMPT → FOUR CANDIDATES</span>
-            <span>MUTATE / BREED / LOCK</span>
-            <span>LIVE MIC · STAGE PROJECTION</span>
+            <span>LIVE PERFORMANCE</span>
+            <span>CICA, NY</span>
+            <span>VISUAL ART JOURNAL</span>
           </div>
-          <span className="v2-case-link mono">IN PROGRESS</span>
+          <span className="v2-case-link mono">ENTER THE PROJECT →</span>
         </div>
-        <div data-zoom="1" className="v2-vfx" ref={grid}
-          onMouseEnter={playAll} onMouseLeave={playOne}>
-          {['effect-01', 'effect-02', 'effect-03', 'effect-04'].map((n, i) => (
-            <div className="v2-well" key={n}>
-              <video src={`/assets/sound-viz/${n}.mp4`} autoPlay={i === 0} loop muted playsInline />
-            </div>
-          ))}
-        </div>
-      </article>}
+        <Link to="/work/rain-rite" data-zoom="1" className="v2-well v3-rain-rite-cover" aria-label="Rain Rite — project page">
+          <img src="/assets/rain-rite/cover.png" alt="Rain Rite live performance" />
+        </Link>
+      </article>
 
       <div className="v3-selected-head" data-unveil="heading">
         <span className="mono v3-unveil-title" aria-label="Selected Shipped Work">

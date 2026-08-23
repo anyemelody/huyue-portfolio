@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 import '../styles.project-hscroll.css'
 import '../styles.project-hscroll.override.css'
 
-function Media({ src, embed, alt }) {
+function Media({ src, embed, alt, autoPlay = true, muted = true, loop = true, controls = false }) {
   if (embed) return <iframe src={embed} title={alt} allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
   if (!src) return <div className="ph-empty" />
   return /\.(mp4|webm|mov)$/i.test(src)
-    ? <video src={src} autoPlay muted loop playsInline aria-label={alt} />
+    ? <video src={src} autoPlay={autoPlay} muted={muted} loop={loop} controls={controls} playsInline aria-label={alt} />
     : <img src={src} alt={alt} loading="lazy" />
 }
 
@@ -56,7 +56,7 @@ export default function ProjectHScroll({ deck }) {
             </section>}
 
             <section className="ph-panel ph-overview">
-              <div className="ph-overview-copy"><span className="ph-kicker mono">{deck.kicker}</span><h1>{deck.title}</h1><p className="ph-lead">{deck.lead}</p><p className="ph-body">{deck.body}</p>{deck.link && <a className="ph-link mono" href={deck.link[1]} target="_blank" rel="noreferrer">{deck.link[0]}</a>}</div>
+              <div className="ph-overview-copy"><span className="ph-kicker mono">{deck.kicker}</span><h1>{deck.title}</h1><p className="ph-lead">{deck.lead}</p><p className="ph-body">{deck.body}</p>{(deck.links || (deck.link ? [deck.link] : [])).map(([label, href]) => <a className="ph-link mono" href={href} target="_blank" rel="noreferrer" key={href}>{label}</a>)}</div>
               <aside className="ph-facts"><div><span className="mono">MY CONTRIBUTIONS</span>{deck.roles.map((role) => <b key={role}>{role}</b>)}</div><div><span className="mono">FACTS</span>{deck.facts.map(([label, value]) => <p key={label}><i>{label}</i><b>{value}</b></p>)}</div></aside>
             </section>
 
@@ -70,12 +70,12 @@ export default function ProjectHScroll({ deck }) {
                   return <figure key={node.src} className={`${mediaIndex % 2 ? 'is-low' : ''} ${node.className || ''}`.trim()} style={{ aspectRatio: node.ratio }}><Media src={node.src} alt={`${deck.title} visual ${mediaIndex + 1}`} /></figure>
                 })}
               </section>
-              return <section className={`ph-panel ph-section ${section.wide ? 'ph-section-wide' : ''}`} key={`${section.title}-${index}`}>
-                <div className="ph-section-copy"><span className="ph-kicker mono">{kicker}</span><h2>{section.title}</h2><p>{section.body}</p></div>
+              return <section className={`ph-panel ph-section ${section.wide ? 'ph-section-wide' : ''} ${section.className || ''}`.trim()} key={`${section.title}-${index}`}>
+                <div className="ph-section-copy"><span className="ph-kicker mono">{kicker}</span><h2>{section.title}</h2><p>{section.body}</p>{section.links?.length > 0 && <div className="ph-section-links">{section.links.map(([label, href]) => <a className="ph-link mono" href={href} target="_blank" rel="noreferrer" key={href}>{label}</a>)}</div>}</div>
                 {section.outcomes?.length > 0 && <ol className="ph-section-outcomes">{section.outcomes.map((outcome) => <li key={outcome.metric}><strong>{outcome.metric}</strong><span>{outcome.text}</span></li>)}</ol>}
                 {section.media?.length > 0 && <div className="ph-section-media">{section.media.map((item) => {
                   const node = typeof item === 'string' ? { src: item } : item
-                  return <figure key={node.src} className={node.className || ''} style={node.ratio ? { aspectRatio: node.ratio } : undefined}><Media src={node.src} alt={`${deck.title} ${section.title}`} /></figure>
+                  return <figure key={node.src} className={node.className || ''} style={node.ratio ? { aspectRatio: node.ratio } : undefined}><Media src={node.src} alt={`${deck.title} ${section.title}`} autoPlay={node.autoPlay} muted={node.muted} loop={node.loop} controls={node.controls} /></figure>
                 })}</div>}
               </section>
             })}

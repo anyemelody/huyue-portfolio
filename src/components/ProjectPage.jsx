@@ -4,7 +4,7 @@ import { bySlug } from '../data/projects.js'
 import ProjectSlides from './ProjectSlides.jsx'
 import ProjectHScroll from './ProjectHScroll.jsx'
 
-const HOME_CASE_ORDER = ['aige', 'tiktok-effect-house', 'hershey-pop-kisses', 'ibm-watson', 'vuse-unboxing-ar', 'palace-museum', 'santander']
+const HOME_CASE_ORDER = ['aige', 'rain-rite', 'tiktok-effect-house', 'hershey-pop-kisses', 'ibm-watson', 'vuse-unboxing-ar', 'palace-museum', 'santander']
 
 const plain = (value = '') => value.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim()
 const paragraphs = (value = '') => value.split(/\n{2,}/).map((part) => plain(part.replace(/^#{2,3}\s.*\n?/, ''))).filter(Boolean)
@@ -74,6 +74,98 @@ function makeAigeDeck(project) {
     previous: { slug: previousSlug, title: bySlug[previousSlug]?.name || 'All projects', meta: bySlug[previousSlug]?.era || 'PORTFOLIO' },
     next: { slug: nextSlug, title: bySlug[nextSlug]?.name || 'All projects', meta: bySlug[nextSlug]?.era || 'PORTFOLIO' },
     hidePrevious: true,
+  }
+}
+
+function makeRainRiteDeck(project) {
+  const detail = project.detail || {}
+  const projectIndex = HOME_CASE_ORDER.indexOf(project.slug)
+  const previousSlug = HOME_CASE_ORDER[(projectIndex - 1 + HOME_CASE_ORDER.length) % HOME_CASE_ORDER.length]
+  const nextSlug = HOME_CASE_ORDER[(projectIndex + 1) % HOME_CASE_ORDER.length]
+
+  return {
+    slug: project.slug,
+    title: project.name,
+    hero: project.cover,
+    video: null,
+    embed: 'https://player.vimeo.com/video/1086616676?title=0&byline=0&portrait=0&dnt=1',
+    kicker: '01 / INTRO',
+    lead: 'Rain Rite is an immersive and live performance that weaves together multimedia projection, traditional Chinese ritual music and dance, and real-time audio interaction.',
+    body: 'At its core, the piece follows a mythic journey between human will and the forces of nature. It creates a mysterious space where ancient culture meets modern digital aesthetics.',
+    roles: ['Storytelling', 'Visual World Building', 'Animation Design'],
+    facts: [['PROJECT', 'Independent'], ['FORMAT', 'Immersive Live Performance'], ['COLLABORATORS', 'Yao Wang · Fanyun Peng · Chad Xu'], ['TIMELINE', detail.year || '2025']],
+    links: [
+      ['CICA ART IN ACTION ↗', 'https://www.cicamuseum.com/artinaction/presenters-2025/'],
+      ['VISUAL ART JOURNAL ↗', 'https://visualartjournal.com/2026/07/01/fanyun-peng-yue-hu-xinyao-wang-chad-xu/'],
+    ],
+    media: [],
+    sections: [
+      {
+        title: 'Exhibition',
+        kicker: '02 / EXHIBITION',
+        className: 'rain-rite-exhibition',
+        body: 'The work has been presented at CICA, NY; NYTimes Big Screen; and Visual Art Journal.',
+        links: [
+          ['TIMES SQUARE BILLBOARD SHOWCASE ↗', 'https://visualartjournal.com/2026/06/29/the-twenty-first-times-square-billboard-showcase/'],
+          ['VISUAL ART JOURNAL FEATURE ↗', 'https://visualartjournal.com/2026/07/01/fanyun-peng-yue-hu-xinyao-wang-chad-xu/'],
+        ],
+        media: [
+          { src: '/assets/rain-rite/time_square_billboard.mp4', ratio: '9 / 16', className: 'rain-rite-portrait-media' },
+          { src: '/assets/rain-rite/magzine.JPG', ratio: '9 / 16', className: 'rain-rite-portrait-media rain-rite-magazine-media' },
+        ],
+      },
+      {
+        title: 'Inspiration',
+        kicker: '03 / INSPIRATION',
+        body: 'We were moved by ancient rituals in which people dance and sing to communicate with nature and the divine. Across time, that impulse remains: a desire to explore, endure, and shape change. Rain Rite reimagines this shared resilience as a ritual that feels grounded, connected, and present.',
+        media: [{ src: '/assets/rain-rite/performance_1.png', ratio: '16 / 9' }],
+      },
+      {
+        title: 'Storytelling',
+        kicker: '04 / STORYTELLING',
+        body: 'Rain Rite opens on a scorched landscape of saturated red and gold, where solar flares pulse with mounting heat and pressure. Shamanic figures enter with movement and drumbeats, summoning clouds, thunder, and rain as sound intensifies. The storm restores the barren ground; it recedes into golden wheat fields and rising Kongming lanterns — a final image of renewal and hope.',
+        media: [{ src: '/assets/rain-rite/visual_design.mp4', ratio: '16 / 9' }],
+      },
+      {
+        title: 'Visual Design',
+        kicker: '05 / VISUAL DESIGN',
+        body: 'We designed a highly saturated visual language built on rich gradients and Chinese ink-wash shaders, evoking an ancient Eastern aesthetic.',
+        media: [
+          { src: '/assets/rain-rite/Sky_Effect_1.5x.mp4', ratio: '16 / 9' },
+          { src: '/assets/rain-rite/Mountain_Effect_1.5x.mp4', ratio: '16 / 9' },
+        ],
+      },
+      {
+        title: 'Choreography Design',
+        kicker: '06 / CHOREOGRAPHY DESIGN',
+        body: 'We choreographed a short sequence inspired by Nuo Dance, centered on grounded movement and ritual gesture. Motion-capture software then translated the performance into a digital avatar, allowing the choreography to exist in both physical and virtual forms.',
+        media: [{ src: '/assets/rain-rite/motion capture.mov', ratio: '16 / 9' }],
+      },
+      {
+        title: 'Choreography Design — Garment',
+        kicker: '07 / CHOREOGRAPHY DESIGN — GARMENT',
+        body: 'We designed a rigged digital character wearing a traditional Chinese costume, created in Marvelous Designer. After testing several garment materials, we chose glowing silk, enhanced with particle effects.',
+        media: [
+          { src: '/assets/rain-rite/cloth simulation 1.mov', ratio: '9 / 16' },
+          { src: '/assets/rain-rite/cloth_simulation_2_h264.mp4', ratio: '9 / 16' },
+          { src: '/assets/rain-rite/cloth simulation 3.mov', ratio: '9 / 16' },
+        ],
+      },
+      {
+        title: 'Interaction Design',
+        kicker: '08 / INTERACTION DESIGN',
+        body: 'A real Chinese drum became the performance’s live input. Its powerful, raw sound was captured and analyzed in real time, triggering visual elements through volume and pitch — bringing authenticity and immediacy to every beat.',
+        media: [{ src: '/assets/rain-rite/interaction_test_2.MOV', ratio: '16 / 9', autoPlay: false, muted: false, loop: false, controls: true }],
+      },
+      {
+        title: 'Stage & Workflow',
+        kicker: '09 / STAGE & WORKFLOW',
+        body: 'Rain Rite is a fully audio-reactive live performance. Drumbeats drive two synchronized Unity visual layers: a dancing character projected onto a transparent foreground screen and an animated landscape across the back wall. The stage was designed in 3D and aligned with projection and lighting; MadMapper maps the visuals while Godox lights respond in sync, joining sound, motion, and light into one immersive space.',
+        media: [{ src: '/assets/rain-rite/stage_design.mov', ratio: '16 / 9' }],
+      },
+    ],
+    previous: { slug: previousSlug, title: bySlug[previousSlug]?.name || 'All projects', meta: bySlug[previousSlug]?.era || 'PORTFOLIO' },
+    next: { slug: nextSlug, title: bySlug[nextSlug]?.name || 'All projects', meta: bySlug[nextSlug]?.era || 'PORTFOLIO' },
   }
 }
 
@@ -347,6 +439,7 @@ function makeSantanderDeck(project) {
 
 function makeDeck(project) {
   if (project.slug === 'aige') return makeAigeDeck(project)
+  if (project.slug === 'rain-rite') return makeRainRiteDeck(project)
   if (project.slug === 'tiktok-effect-house') return makeTikTokDeck(project)
   if (project.slug === 'hershey-pop-kisses') return makeHersheyDeck(project)
   if (project.slug === 'vuse-unboxing-ar') return makeVuseDeck(project)

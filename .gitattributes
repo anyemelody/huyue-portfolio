@@ -8,3 +8,6 @@ public/assets/dreamy-galaxy/Galaxy[[:space:]](1).mp4 filter=lfs diff=lfs merge=l
 public/assets/dreamy-galaxy/Galaxy.mp4 filter=lfs diff=lfs merge=lfs -text
 public/assets/dreamy-lotus/luotusImproveShader.mp4 filter=lfs diff=lfs merge=lfs -text
 public/assets/lotus-love/luotusImproveShader.mp4 filter=lfs diff=lfs merge=lfs -text
+public/assets/rain-rite/visual_design.mp4 filter=lfs diff=lfs merge=lfs -text
+public/assets/rain-rite/interaction_test_2.MOV filter=lfs diff=lfs merge=lfs -text
+public/assets/rain-rite/stage_design.mov filter=lfs diff=lfs merge=lfs -text
