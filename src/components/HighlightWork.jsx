@@ -134,7 +134,7 @@ export default function HighlightWork() {
             <span>CICA, NY</span>
             <span>VISUAL ART JOURNAL</span>
           </div>
-          <span className="v2-case-link mono">ENTER THE PROJECT →</span>
+          <Link to="/work/rain-rite" className="v2-case-link mono">ENTER THE PROJECT →</Link>
         </div>
         <Link to="/work/rain-rite" data-zoom="1" className="v2-well v3-rain-rite-cover" aria-label="Rain Rite — project page">
           <img src="/assets/rain-rite/cover.png" alt="Rain Rite live performance" />
